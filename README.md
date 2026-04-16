@@ -1,220 +1,211 @@
-[🇬🇧 English](README.en.md) | [🇨🇳 中文](README.zh.md) | 🇷🇺 **Русский**
+🇬🇧 **English** | [🇨🇳 中文](README.zh.md) | [🇷🇺 Русский](README.md)
 
 # CoreGuard
 
-**CoreGuard** — Android-приложение для защиты корпоративных сетей от недоверенных приложений на пользовательских устройствах. Использует стандартный Android Work Profile для изоляции, с триггерной автоматикой и сетевым Kill Switch. Аналог Shelter, но с расширенной функциональностью.
+**CoreGuard** — an Android application for protecting corporate networks from untrusted applications on user devices. Uses the standard Android Work Profile for isolation, with trigger-based automation and a network Kill Switch. A feature-rich alternative to Shelter.
 
 ---
 
-## Основная идея
+## Core Concept
 
-Главная проблема: сотрудники устанавливают на рабочие устройства приложения из непроверенных источников. Эти приложения могут сканировать корпоративную сеть, собирать данные о подключениях, передавать информацию третьим сторонам.
+The main problem: employees install applications from unverified sources on work devices. These apps can scan the corporate network, collect connection data, and transmit information to third parties.
 
-**Решение:** поместить недоверенные приложения в изолированный Android Work Profile. Два независимых пространства на одном устройстве:
+**Solution:** place untrusted applications into an isolated Android Work Profile. Two independent spaces on one device:
 
 ```
 ┌─────────────────────────┐   ┌─────────────────────────┐
-│   Основной профиль      │   │   Work Profile          │
-│   Корпоративные ресурсы │   │   Недоверенные          │
-│   Защищённое соединение │   │   приложения            │
-│   Рабочие инструменты   │   │   ← изолированы от сети │
+│   Main Profile          │   │   Work Profile           │
+│   Corporate resources   │   │   Untrusted              │
+│   Protected connection  │   │   applications           │
+│   Work tools            │   │   ← isolated from network│
 └─────────────────────────┘   └─────────────────────────┘
-         ↑ разные uid, разные данные, разный сетевой стек
+         ↑ different uid, different data, different network stack
 ```
 
-Приложения в разных профилях существуют в разных uid-пространствах Linux. Они не видят данные и сетевые состояния друг друга. Приложение в Work Profile **не имеет доступа** к корпоративным ресурсам и подключениям основного профиля.
+Apps in different profiles exist in different Linux uid namespaces. They cannot see each other's data and network states. An app in the Work Profile **has no access** to corporate resources and connections of the main profile.
 
-CoreGuard автоматизирует управление: при срабатывании триггера недоверенные приложения замораживаются и полностью отрезаются от сети.
+CoreGuard automates management: when a trigger fires, untrusted apps are frozen and completely cut off from the network.
 
 ---
 
-## Защита: изоляция приложений в Work Profile
+## Protection: App Isolation in Work Profile
 
-### Главное правило: недоверенные приложения — только в рабочем профиле
+### Main rule: untrusted apps — only in the Work Profile
 
-Чтобы защита работала, нужно соблюдать одно правило: **установите недоверенные приложения в рабочий профиль** — через Play Market рабочего профиля. Именно это создаёт изоляцию на уровне ядра.
+For protection to work, follow one rule: **install untrusted apps in the Work Profile** — via the Work Profile's Play Store. This creates kernel-level isolation.
 
-```
-Основной профиль             Рабочий профиль
-─────────────────────        ─────────────────────
-Корпоративные приложения     Недоверенные приложения
-Рабочая почта, VoIP          Сторонние сервисы
-Защищённое соединение        ← изолированы, нет доступа
-```
+Both profiles run **simultaneously and in parallel**. Work Profile apps cannot see the connections and data of the main profile.
 
-Оба профиля работают **одновременно и параллельно**. Приложения из рабочего профиля не видят подключения и данные основного профиля.
+### What an app sees from inside the Work Profile
 
-### Что приложение видит изнутри рабочего профиля
+The Work Profile is a separate Linux uid container. `ConnectivityManager` filters networks by userId — WP traffic is completely isolated from the main profile.
 
-Рабочий профиль — отдельный uid-контейнер Linux. `ConnectivityManager` фильтрует сеть по userId: трафик WP полностью изолирован от основного профиля.
+Key protection — **process suspension**: when a trigger fires, all untrusted apps are set to `setPackagesSuspended` — a dead process cannot check or transmit anything.
 
-Ключевая защита — **приостановка процессов**: при срабатывании триггера все недоверенные приложения переведены в `setPackagesSuspended` — у мёртвого процесса нет возможности что-либо проверить или передать.
-
-| Что проверяет приложение в WP | Результат | Комментарий |
+| What an app checks in WP | Result | Comment |
 |---|:---:|---|
-| `ConnectivityManager` — тип сети | ✅ изолировано | Видит только свою сеть |
-| `NetworkCapabilities` — транспорт | ✅ изолировано | Нет данных о соединениях основного профиля |
-| DNS-серверы | ✅ изолировано | Свои DNS, не корпоративные |
-| Сетевые интерфейсы | ✅ при заморозке | Приложение **приостановлено** при срабатывании триггера |
-| IP-адрес | ✅ изолировано | Прямой IP, без доступа к корпоративному туннелю |
+| `ConnectivityManager` — network type | ✅ isolated | Sees only its own network |
+| `NetworkCapabilities` — transport | ✅ isolated | No data about main profile connections |
+| DNS servers | ✅ isolated | Own DNS, not corporate |
+| Network interfaces | ✅ when frozen | App is **suspended** when trigger fires |
+| IP address | ✅ isolated | Direct IP, no access to corporate tunnel |
 | `System.getProperty("http.proxyHost")` | ✅ | `null` |
 
-### Триггеры — автоматический контроль
+### Triggers — Automatic Control
 
-CoreGuard реализует подход **Zero Trust**: недоверенные приложения не должны работать в момент, когда устройство имеет доступ к корпоративной сети. Комбинированная система триггеров реагирует на изменения сетевого состояния:
+CoreGuard implements a **Zero Trust** approach: untrusted apps must not operate when the device has access to the corporate network. The combined trigger system reacts to network state changes:
 
-- VPN, Wi-Fi, мобильная сеть, оператор — 4 типа триггеров
-- При подключении к корпоративной Wi-Fi — автоматический Kill Switch (максимальная защита)
-- Любой триггер → немедленная заморозка недоверенных приложений
+- VPN, Wi-Fi, mobile network, operator — 4 trigger types
+- Corporate Wi-Fi connection — automatic Kill Switch (maximum protection)
+- Any trigger → immediate freeze of untrusted apps
 
 ---
 
-## Зачем, если есть Shelter?
+## Why not just Shelter?
 
-Shelter умеет создавать рабочий профиль и клонировать туда приложения. Заморозить приложение можно только **вручную**. Никакой автоматики нет, никакого Kill Switch нет.
+Shelter can create a Work Profile and clone apps into it. Freezing an app can only be done **manually**. No automation, no Kill Switch.
 
-CoreGuard делает то же самое, **плюс**:
+CoreGuard does the same, **plus**:
 
-| Функция | Shelter | CoreGuard |
+| Feature | Shelter | CoreGuard |
 |---|:---:|:---:|
-| Work Profile (изоляция приложений) | ✅ | ✅ |
-| Ручная заморозка/разморозка | ✅ | ✅ |
-| **Автозаморозка по триггерам** | ❌ | ✅ |
-| **Network Kill Switch (полная блокировка сети)** | ❌ | ✅ |
-| **Корпоративная Wi-Fi → автоматический Kill Switch** | ❌ | ✅ |
-| **Триггер: виртуальная/корпоративная сеть** | ❌ | ✅ |
-| **Триггер: Wi-Fi SSID** | ❌ | ✅ |
-| **Триггер: мобильный интернет** | ❌ | ✅ |
-| **Триггер: мобильный оператор** | ❌ | ✅ |
-| Управление буфером обмена между профилями | ❌ | ✅ |
-| Управление контактами между профилями | ❌ | ✅ |
-| **Ограничение разрешений приложений (геолокация, камера, микрофон…)** | ❌ | ✅ |
-| **Настройка разрешений отдельно для каждого приложения** | ❌ | ✅ |
-| **Блокировка удаления приложений из Work Profile** | ❌ | ✅ |
+| Work Profile (app isolation) | ✅ | ✅ |
+| Manual freeze/unfreeze | ✅ | ✅ |
+| **Auto-freeze by triggers** | ❌ | ✅ |
+| **Network Kill Switch (full network block)** | ❌ | ✅ |
+| **Corporate Wi-Fi → automatic Kill Switch** | ❌ | ✅ |
+| **Trigger: virtual/corporate network** | ❌ | ✅ |
+| **Trigger: Wi-Fi SSID** | ❌ | ✅ |
+| **Trigger: mobile internet** | ❌ | ✅ |
+| **Trigger: mobile operator** | ❌ | ✅ |
+| Clipboard sharing between profiles | ❌ | ✅ |
+| Contact sharing between profiles | ❌ | ✅ |
+| **App permission control (location, camera, mic…)** | ❌ | ✅ |
+| **Per-app permission settings** | ❌ | ✅ |
+| **Block app uninstall from Work Profile** | ❌ | ✅ |
 
 ---
 
-## Как это работает
+## How It Works
 
-### Work Profile — два независимых пространства
+### Work Profile — Two Independent Spaces
 
-Work Profile создаётся через стандартный системный диалог Android. Не требует ADB, factory reset или root. После создания на устройстве появляются два полностью изолированных контейнера:
+Work Profile is created via the standard Android system dialog. No ADB, factory reset, or root required. After creation, two completely isolated containers appear on the device:
 
-- **Основной профиль** — корпоративные ресурсы, защищённые подключения, рабочие инструменты.
-- **Work Profile** — отдельное uid-пространство для недоверенных приложений.
+- **Main Profile** — corporate resources, protected connections, work tools.
+- **Work Profile** — separate uid space for untrusted apps.
 
-Данные, аккаунты, кэш, SharedPreferences — всё раздельное на уровне ядра. Приложение из Work Profile вызывает `ConnectivityManager` — и видит **только свою** сеть, без доступа к подключениям основного профиля.
+Data, accounts, cache, SharedPreferences — everything is separated at kernel level.
 
-### Триггеры — автоматическое переключение
+### Triggers — Automatic Switching
 
-Пользователь настраивает условия срабатывания. При срабатывании любого триггера:
+The user configures trigger conditions. When any trigger fires:
 
-- **0 мс** — Kill Switch: локальный TUN black hole на Work Profile отбрасывает весь трафик → ни один байт из недоверенных приложений не уходит
-- **100 мс** — `setPackagesSuspended()`: все приложения в Work Profile заморожены (серые иконки, нет CPU / RAM / сети / push-уведомлений)
+- **0 ms** — Kill Switch: local TUN black hole on Work Profile drops all traffic → not a single byte from untrusted apps leaves
+- **100 ms** — `setPackagesSuspended()`: all WP apps are frozen (gray icons, no CPU / RAM / network / push notifications)
 
-Когда ни один триггер не активен — всё автоматически восстанавливается.
+When no trigger is active — everything restores automatically.
 
-### Kill Switch — локальный файрвол
+### Kill Switch — Local Firewall
 
-Kill Switch — это локальный TUN-интерфейс с маршрутом `0.0.0.0/0`, который читает все пакеты и отбрасывает их. Ни один байт не покидает устройство. Работает в рамках Work Profile, не затрагивает основной профиль.
+Kill Switch is a local TUN interface with a `0.0.0.0/0` route that reads all packets and drops them. Not a single byte leaves the device. Works within the Work Profile, does not affect the main profile.
 
-Kill Switch **опционален** — включается отдельным переключателем в настройках. По умолчанию выключен.
+Kill Switch is **optional** — enabled separately in settings. Off by default.
 
 ---
 
-## Триггеры
+## Triggers
 
-| Триггер | Описание | По умолчанию |
+| Trigger | Description | Default |
 |---|---|:---:|
-| 🔒 **Виртуальная сеть** | Активна виртуальная/корпоративная сеть на устройстве | ✅ Вкл |
-| 📶 **Wi-Fi SSID** | Подключение к сети из пользовательского списка | ❌ Выкл |
-| 🏢 **Корпоративная Wi-Fi → Kill Switch** | При матче Wi-Fi автоматически включать Kill Switch | ❌ Выкл |
-| 📱 **Мобильный интернет** | Любое подключение через мобильные данные | ✅ Вкл |
-| 📡 **Мобильный оператор** | Подключение к определённому оператору | ❌ Выкл |
+| 🔒 **Virtual Network** | Virtual/corporate network active on device | ✅ On |
+| 📶 **Wi-Fi SSID** | Connected to a network from user's list | ❌ Off |
+| 🏢 **Corporate Wi-Fi → Kill Switch** | Auto-enable Kill Switch on Wi-Fi match | ❌ Off |
+| 📱 **Mobile Internet** | Any connection via mobile data | ✅ On |
+| 📡 **Mobile Operator** | Connected to a specific operator | ❌ Off |
 
-Логика всегда **ИЛИ** — достаточно одного сработавшего триггера.
+Logic is always **OR** — one triggered condition is enough.
 
-### Сетевые политики
+### Network Policies
 
-Различные типы подключений могут активировать разные уровни защиты:
+Different connection types can activate different protection levels:
 
-- **Корпоративная Wi-Fi** (SSID из списка + флаг «Kill Switch») → **максимальная защита**: Kill Switch блокирует всю сеть, все отмеченные приложения замораживаются
-- **VPN / мобильный интернет** → **стандартная защита**: заморозка отмеченных приложений, остальные работают напрямую
-- **Мобильный оператор** → **конфигурируемая защита**: реакция на конкретного оператора (например, корпоративная SIM)
-
----
-
-## Настройки
-
-### Обмен между профилями
-
-| Параметр | По умолчанию |
-|---|:---:|
-| Буфер обмена (copy/paste) | ✅ Вкл |
-| Контакты | ❌ Выкл |
-| Файлы / «Поделиться» | ❌ Выкл |
-| Установка приложений из неизвестных источников | ✅ Вкл |
-
-### Конфиденциальность рабочего профиля
-
-| Параметр | По умолчанию |
-|---|:---:|
-| Скрыть иконку приложения из лаунчера рабочего профиля | ✅ Вкл |
-| Запрет скриншотов | ❌ Выкл |
-| Запрет доступа к состоянию телефона и оператора | ❌ Выкл |
-| Запрет геолокации | ❌ Выкл |
-| Запрет камеры | ❌ Выкл |
-| Запрет микрофона | ❌ Выкл |
-| Запрет доступа к контактам | ❌ Выкл |
-| Запрет доступа к SMS | ❌ Выкл |
-| Запрет доступа к журналу вызовов | ❌ Выкл |
-| Запрет добавления аккаунтов | ❌ Выкл |
-| Запрет Bluetooth-сканирования | ❌ Выкл |
-| Запрет Bluetooth (общий) | ❌ Выкл |
-| Запрет NFC | ❌ Выкл |
-| Блокировка удаления приложений | ❌ Выкл |
-| Индивидуальные разрешения для каждого приложения | — (отдельный экран) |
+- **Corporate Wi-Fi** (SSID from list + Kill Switch flag) → **maximum protection**: Kill Switch blocks all network, all marked apps are frozen
+- **VPN / mobile internet** → **standard protection**: freeze marked apps, others work directly
+- **Mobile operator** → **configurable protection**: react to a specific operator (e.g., corporate SIM)
 
 ---
 
-## Требования
+## Settings
+
+### Cross-Profile Sharing
+
+| Parameter | Default |
+|---|:---:|
+| Clipboard (copy/paste) | ✅ On |
+| Contacts | ❌ Off |
+| Files / Share | ❌ Off |
+| Install apps from unknown sources | ✅ On |
+
+### Work Profile Privacy
+
+| Parameter | Default |
+|---|:---:|
+| Hide app icon from Work Profile launcher | ✅ On |
+| Block screenshots | ❌ Off |
+| Block IMEI and phone number access | ❌ Off |
+| Block location | ❌ Off |
+| Block camera | ❌ Off |
+| Block microphone | ❌ Off |
+| Block contacts access | ❌ Off |
+| Block SMS access | ❌ Off |
+| Block call log access | ❌ Off |
+| Block account enumeration | ❌ Off |
+| Block Bluetooth scanning | ❌ Off |
+| Block Bluetooth (general) | ❌ Off |
+| Block NFC | ❌ Off |
+| Block app uninstall | ❌ Off |
+| Per-app permissions | — (separate screen) |
+
+---
+
+## Requirements
 
 - Android 8.0+ (API 26)
-- Устройство с поддержкой Work Profile (99% устройств)
-- Для триггера Wi-Fi SSID: разрешение на геолокацию (требует Android)
+- Device with Work Profile support (99% of devices)
+- For Wi-Fi SSID trigger: location permission (required by Android)
 
-**Для разработки:** JDK 17, Android SDK (API 26+), ADB.
+**For development:** JDK 17, Android SDK (API 26+), ADB.
 
 ---
 
-## Сборка
+## Build
 
 ```powershell
-# Из корневой папки проекта
+# From project root
 .\gradlew.bat assembleDebug
 ```
 
 APK: `app/build/outputs/apk/debug/app-debug.apk`
 
-**Установка на устройство (рабочий профиль):**
+**Install on device (work profile):**
 ```powershell
 adb install --user all -r app\build\outputs\apk\debug\app-debug.apk
 ```
-> Флаг `--user all` обязателен — иначе обновится только основной профиль (user 0).
+> The `--user all` flag is mandatory — otherwise only the main profile (user 0) will be updated.
 
 ---
 
-## Скачать
+## Download
 
-Готовый APK: см. раздел **Releases** этого репозитория.
+Ready APK: see the **Releases** section of this repository.
 
-## Лицензия
+## License
 
-MIT — см. файл [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE) file.
 
-> *Если вы форкаете или распространяете этот проект — пожалуйста, сохраняйте раздел с донатами/поддержкой. Это единственный способ поддержать разработку. Спасибо!*
->
 > *If you fork or redistribute this project — please keep the donation/support section. It's the only way to support development. Thank you!*
 >
+> *Если вы форкаете или распространяете этот проект — пожалуйста, сохраняйте раздел с донатами/поддержкой. Это единственный способ поддержать разработку. Спасибо!*
+>
 > *如果您 fork 或分发此项目，请保留捐赠/支持部分。这是支持开发的唯一方式。谢谢！*
-
