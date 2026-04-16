@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_light"
+    android:fitsSystemWindows="true">
+
+    <!-- Секция 1: создание профиля -->
+    <LinearLayout
+        android:id="@+id/provisionSection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/provision_title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/on_surface"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/provision_description"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="32dp"
+            android:gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProvision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/provision_button"
+            android:textSize="16sp"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+
+    <!-- Секция 2: профиль создан, основной профиль -->
+    <LinearLayout
+        android:id="@+id/profileCreatedSection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_created_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/on_surface"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_created_hint"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Секция 3: управление (Work Profile) -->
+    <LinearLayout
+        android:id="@+id/controlSection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- Закрываемый информационный баннер -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/infoBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:cardBackgroundColor="#E3F2FD"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/info_banner_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary" />
+
+                    <ImageView
+                        android:id="@+id/btnCloseBanner"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:contentDescription="Закрыть"
+                        android:background="?attr/selectableItemBackgroundBorderless" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_banner_message"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Статус (компактный) -->
+        <TextView
+            android:id="@+id/statusLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp" />
+
+        <!-- Карточка: список приложений -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/card_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Заголовок -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/apps_to_freeze_title"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/on_surface"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.05" />
+                    </LinearLayout>
+
+                    <!-- Кнопки управления -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSelectAll"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_select_all"
+                            android:textSize="12sp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDeselectAll"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_deselect_all"
+                            android:textSize="12sp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveApps"
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_save"
+                            android:textSize="12sp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="18dp" />
+                    </LinearLayout>
+
+                    <!-- Галочка: показать системные -->
+                    <CheckBox
+                        android:id="@+id/cbShowSystem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/show_system_apps"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"
+                        android:checked="false"
+                        android:layout_marginBottom="4dp" />
+
+                    <!-- Разделитель -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider"
+                        android:layout_marginBottom="4dp" />
+
+                    <!-- Список приложений -->
+                    <LinearLayout
+                        android:id="@+id/appListContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Нижняя навигация (2 вкладки как на скриншоте) -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bottom_nav_bg"
+            app:menu="@menu/menu_bottom"
+            app:labelVisibilityMode="labeled"
+            app:itemIconTint="@color/primary"
+            app:itemTextColor="@color/primary"
+            app:elevation="8dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

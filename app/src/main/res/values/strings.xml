@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CoreGuard</string>
+
+    <!-- Provisioning -->
+    <string name="provision_title">Создать защищённое пространство</string>
+    <string name="provision_description">Будет создан изолированный рабочий профиль Android. Приложения внутри него будут полностью отделены от ваших личных данных.</string>
+    <string name="provision_button">Создать</string>
+    <string name="provision_already_managed">Рабочий профиль уже создан</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_cross_profile">Обмен между профилями</string>
+    <string name="pref_clipboard">Буфер обмена</string>
+    <string name="pref_clipboard_summary">Разрешить копирование между основным и рабочим профилем</string>
+    <string name="pref_contacts">Контакты</string>
+    <string name="pref_contacts_summary">Показывать рабочие контакты при звонке из основного профиля</string>
+    <string name="pref_gallery">Галерея / Файлы</string>
+    <string name="pref_unknown_sources">Установка APK</string>
+    <string name="pref_unknown_sources_summary">Разрешить установку приложений из файлов (не из Google Play) в рабочем профиле</string>
+    <string name="show_system_apps">Показать системные (обновить список)</string>
+    <string name="pref_gallery_summary">Разрешить передачу файлов между профилями через \"Поделиться\"</string>
+
+    <!-- Triggers -->
+    <string name="triggers_title">Триггеры</string>
+    <string name="trigger_vpn">Виртуальная сеть на устройстве (частная/корпоративная)</string>
+    <string name="trigger_vpn_summary">Срабатывать при включении любой виртуальной сети (частной/корпоративной)</string>
+    <string name="trigger_wifi">Wi-Fi сеть</string>
+    <string name="trigger_wifi_summary">Срабатывать при подключении к указанным сетям\n\nДля работы данного триггера ОБЯЗАТЕЛЬНО должен быть включён GPS!</string>
+    <string name="trigger_logic">Логика триггеров</string>
+    <string name="trigger_action">Действие при срабатывании</string>
+    <string name="action_freeze">Заморозить отмеченные приложения, остальные — напрямую (например, при срабатывании триггера Виртуальная сеть приложения из основного профиля идут через нее, а из рабочего профиля — как будто ее нет) - Защита корпоративных сетей от сканирования и взлома!</string>
+
+    <!-- Kill Switch -->
+    <string name="kill_switch_title">Kill Switch (полная блокировка сети)</string>
+    <string name="kill_switch_summary">При срабатывании триггера блокировать ВСЮ сеть (включая неотмеченные приложения). Режим максимальной защиты — ни одно приложение не сможет выйти в интернет.</string>
+
+    <!-- First launch -->
+    <string name="first_launch_title">Как работает CoreGuard</string>
+    <string name="first_launch_message">CoreGuard создаёт изолированное рабочее пространство (Work Profile) на вашем устройстве (стандартный функционал Android для корпоративных пользователей).
+
+Все приложения рабочего профиля по умолчанию работают в режиме защиты корпоративной сети от несанционированного проникновения - не доверенными приложениями!
+
+При срабатывании триггера (Виртуальная сеть, Wi-Fi, оператор):
+
+🔴 Отмеченные приложения — полностью блокируются
+
+🟢 Неотмеченные приложения — продолжают работать напрямую
+
+Вы сами выбираете, какие приложения заблокировать, как и при каких условиях.
+
+В настройках можно включить режим Kill Switch — тогда при срабатывании триггера будет заблокирована ВСЯ сеть без исключений (для приложений рабочего профиля).</string>
+
+    <!-- Privacy -->
+    <string name="privacy_warning_title">О разрешениях</string>
+    <string name="privacy_warning_message">CoreGuard, при установке запрашивает только одно разрешение.
+
+Это необходимо для определения состояния сети и активных подключений в основном профиле.
+
+⚠ CoreGuard НЕ собирает, НЕ хранит и НЕ передаёт никакие Ваши данные. Приложение работает полностью локально на вашем устройстве.</string>
+
+    <!-- Buttons -->
+    <string name="btn_start_protection">Включить защиту</string>
+    <string name="btn_stop_protection">Выключить защиту</string>
+    <string name="btn_app_picker">Выбрать приложения</string>
+    <string name="btn_select_all">Выбрать все</string>
+    <string name="btn_deselect_all">Снять все</string>
+    <string name="btn_save">Сохранить</string>
+    <string name="app_picker_title">Выберите приложения для изоляции</string>
+    <string name="app_picker_header">Приложения</string>
+
+    <!-- Status -->
+    <string name="status_active">🛡 Мониторинг активен</string>
+    <string name="status_inactive">Мониторинг неактивен</string>
+    <string name="status_triggered">⚡ Триггер сработал — отмеченные заморожены</string>
+
+    <!-- Info banner -->
+    <string name="info_banner_title">🔒 Как работает защита</string>
+    <string name="info_banner_message">Защита корпоративных сетей и устройств!\n\nВсе приложения ниже уже изолированы от основного пространства. Для максимального уровня защиты: отметьте приложения галочками — при срабатывании триггера они будут полностью заморожены.</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_monitor">Мониторинг триггеров</string>
+    <string name="notification_monitoring">CoreGuard следит за триггерами</string>
+    <string name="notification_triggered">Защита активна — корпоративная сеть изолирована!</string>
+    <string name="notification_permission_denied">Без разрешения на уведомления мониторинг невозможен</string>
+
+    <!-- Provisioning result -->
+    <string name="provision_success">Рабочий профиль создан! Откройте приложение со значком 🎒</string>
+    <string name="profile_created_title">Защищённое пространство создано</string>
+    <string name="profile_created_hint">Найдите значок приложения с портфелем 🎒 в списке приложений — это CoreGuard рабочего профиля. Откройте его для управления защитой.</string>
+
+    <!-- OEM Warnings -->
+    <string name="oem_warning_title">Важно для стабильной работы</string>
+    <string name="oem_warning_xiaomi">На MIUI (Xiaomi/Redmi/POCO) фоновые сервисы могут быть остановлены.
+
+Для постоянной работы защиты:
+
+1. Настройки → Приложения → CoreGuard → Автозапуск → Включить
+
+2. Настройки → Батарея → Экономия заряда → CoreGuard → Без ограничений
+
+3. Настройки → Приложения → CoreGuard → Другие разрешения → Запуск в фоне → Разрешить</string>
+    <string name="oem_warning_huawei">На Huawei/Honor фоновые процессы агрессивно ограничиваются.
+
+Для постоянной работы:
+
+Настройки → Батарея → Запуск приложений → CoreGuard → Управлять вручную → включить все три разрешения.
+
+Внимание: без Google-сервисов (GMS) рабочий профиль Android может работать нестабильно.</string>
+    <string name="oem_warning_samsung">На Samsung One UI отключите оптимизацию батареи для CoreGuard:
+
+Настройки → Уход за устройством → Батарея → Ограничения приложений → CoreGuard → Без ограничений.</string>
+    <string name="oem_warning_oppo">На OPPO / OnePlus / Realme / Vivo оболочка агрессивно завершает фоновые приложения.
+
+Добавьте CoreGuard в список автозапуска и отключите ограничения батареи в настройках системы (ColorOS / OxygenOS / FunTouchOS).</string>
+    <string name="oem_warning_generic">Некоторые производители ограничивают фоновые приложения.
+
+Для надёжной работы: Настройки → Батарея → найдите CoreGuard → выберите «Без ограничений».</string>
+
+    <!-- Installation info -->
+    <string name="install_info_title">Завершение установки</string>
+    <string name="install_info_message">Во время первичной настройки рабочего пространства телефон может ощутимо нагрузиться — это нормально. Дождитесь окончания процесса, не закрывайте приложение, не спешите - подтормаживание устройства в этот момент -норма!</string>
+
+    <!-- Add Apps screen -->
+    <string name="add_apps_title">Добавить приложения</string>
+    <string name="add_apps_userapp_hint">💡 Для загруженных приложений: найдите Play Маркет со значком 🎒 (портфеля) — это магазин рабочего профиля. Установите нужные приложения там — они будут изолированы в защищённом пространстве. НЕ ЗАБУДЬТЕ удалить дублирующиеся приложения из основного пространства после установки их в рабочий профиль.</string>
+    <string name="add_apps_system_title">Системные приложения (доступны для включения)</string>
+    <string name="add_apps_nothing_available">Все доступные системные приложения уже включены в рабочем профиле.</string>
+    <string name="add_apps_enable_button">Включить выбранные</string>
+    <string name="add_apps_nothing_selected">Выберите хотя бы одно приложение</string>
+    <string name="add_apps_enabled_count">Включено %1$d из %2$d приложений</string>
+
+    <!-- Toolbar menu -->
+    <string name="menu_add_apps">Добавить приложения</string>
+    <string name="menu_freeze_apps">Приложения для заморозки</string>
+
+    <!-- Main screen: control panel -->
+    <string name="btn_toggle_active">Активно</string>
+    <string name="apps_to_freeze_title">Приложения для блокировки</string>
+    <string name="apps_saved">Список приложений сохранён</string>
+    <string name="app_label_freeze">🔴 %s</string>
+    <string name="app_label_bypass">🟢 %s</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_connection">Подключение</string>
+    <string name="nav_settings">Настройки</string>
+
+    <!-- Settings: network pickers -->
+    <string name="wifi_networks_picker_title">Список Wi-Fi сетей</string>
+    <string name="wifi_scanning">Поиск Wi-Fi сетей…</string>
+    <string name="wifi_no_networks_found">Доступные сети не найдены. Убедитесь, что Wi-Fi включён.</string>
+    <string name="wifi_add_manual">Ввести вручную</string>
+    <string name="wifi_not_set">Не задано</string>
+
+    <!-- Easter egg -->
+    <string name="easter_egg_title">О приложении</string>
+    <string name="easter_egg_summary">CoreGuard v1.0 · с благодарностью Anthropic</string>
+
+    <!-- Cross-profile sync warning -->
+    <string name="cross_profile_sync_category">Синхронизация между профилями</string>
+    <string name="cross_profile_sync_title">⚠ Проверить синхронизацию приложений</string>
+    <string name="cross_profile_sync_summary">Некоторые приложения (Контакты, Календарь, Галерея) могут синхронизировать данные между основным и рабочим профилем. Нажмите, чтобы открыть системные настройки и проверить.</string>
+    <string name="cross_profile_sync_summary_no_link">Некоторые приложения (Контакты, Календарь, Галерея) могут синхронизировать данные между основным и рабочим профилем. Проверьте в: Настройки → Аккаунты → Рабочий профиль.</string>
+
+    <!-- Work profile onboarding -->
+    <string name="wp_onboarding_title">Настройка защищённого пространства</string>
+    <string name="wp_onboarding_message">Вы находитесь в рабочем профиле — все приложения здесь находятся под защитой CoreGuard.
+
+Для эффективной работы защиты:
+
+1. Установите нужные приложения в это пространство через Play Маркет со значком 🎒 (портфеля)
+
+2. Удалите эти приложения из основного пространства — это ОБЯЗАТЕЛЬНО для защиты!
+
+3. Отметьте установленные приложения в списке блокировки на главном экране (если хотите максимальную защиту)
+
+⚠ Если приложения останутся в обоих пространствах — защита не будет работать для копий в основном профиле.</string>
+
+    <!-- Stable work settings -->
+    <string name="stable_work_category">Стабильная работа</string>
+    <string name="stable_work_oem_title">⚙ Настройки приложения в системе</string>
+    <string name="stable_work_oem_summary">Откройте системные настройки CoreGuard: автозапуск, батарея, разрешения. Необходимо для фоновой работы.</string>
+    <string name="stable_work_guide_title">📋 Как добиться стабильной работы</string>
+    <string name="stable_work_guide_summary">Рекомендации по настройке для вашего устройства</string>
+
+    <!-- Existing work profile warning -->
+    <string name="existing_profile_title">⚠ Обнаружен существующий рабочий профиль</string>
+    <string name="existing_profile_message">На устройстве уже создан рабочий профиль (возможно, приложением Shelter или другим менеджером).
+
+CoreGuard не может использовать чужой рабочий профиль. Для работы необходимо:
+
+1. Удалить существующий рабочий профиль в настройках устройства
+2. Перезапустить CoreGuard и создать новый профиль
+
+📍 Путь для вашего устройства:
+%s
+
+⚠ При удалении рабочего профиля все данные и приложения внутри него будут удалены!!!</string>
+    <string name="existing_profile_path_xiaomi">Настройки → Расширенные настройки → Аккаунты и синхронизация → Удалить рабочий профиль</string>
+    <string name="existing_profile_path_samsung">Настройки → Учётные записи и архивация → Управление аккаунтами → Рабочий профиль → Удалить рабочий профиль</string>
+    <string name="existing_profile_path_huawei">Настройки → Пользователи и аккаунты → Удалить рабочий профиль</string>
+    <string name="existing_profile_path_oppo">Настройки → Пользователи и аккаунты → Удалить рабочий профиль</string>
+    <string name="existing_profile_path_generic">Настройки → Пароли и аккаунты → Рабочий профиль → Удалить рабочий профиль</string>
+    <string name="existing_profile_open_settings">Открыть настройки</string>
+    <string name="existing_profile_dismiss">Понятно</string>
+
+    <!-- Work profile info -->
+    <string name="wp_apps_info_title">ℹ Приложения в рабочем профиле</string>
+    <string name="wp_apps_info_summary">Все приложения, установленные в рабочем профиле, находятся под управлением CoreGuard. При срабатывании триггера отмеченные приложения будут заблокированы.</string>
+
+    <!-- Donate -->
+    <string name="donate_title">☕</string>
+    <string name="donate_item_title">Поддержать разработчика</string>
+    <string name="donate_summary">Карта · BTC · USDC · Monero</string>
+    <string name="donate_screen_title">☕ На печеньки</string>
+    <string name="donate_card">💳 Карта (EU)</string>
+    <string name="donate_btc">₿ Bitcoin (BTC)</string>
+    <string name="donate_usdc">💵 USDC (TRC-20)</string>
+    <string name="donate_xmr">🔒 Monero (XMR)</string>
+    <string name="donate_copy">Копировать</string>
+    <string name="donate_copied">Скопировано!</string>
+    <string name="donate_card_number">4407 5222 1779 1007</string>
+    <string name="donate_btc_address">bc1qnlk04sw30g2g7350ysq2ze3mhdy6yldlh8lr6j</string>
+    <string name="donate_usdc_address">TWcEhgVVqKyvbP6uMHeVoPzk97QTqSzUZS</string>
+    <string name="donate_xmr_address">47vwPFg489aBcM5d1z5UY4MrvDXbctghsPNe9d2sRoinGshKjqbxQuz2ft1uE5G6jM8VSnbmuNWdkGxn4bmCaV4p6zK4NFk</string>
+
+
+    <!-- Защита от слежки -->
+    <string name="pref_screen_capture_disabled">&#128247; Защита от скриншотов</string>
+    <string name="pref_screen_capture_disabled_summary">Приложения в рабочем профиле не смогут делать скриншоты и записывать экран. Блокирует скрытые фоновые снимки запущенных приложений. Ваши скриншоты из рабочего профиля также будут заблокированы.</string>
+    <string name="pref_restrict_phone_state">&#128244; Скрыть IMEI и номер телефона</string>
+    <string name="pref_restrict_phone_state_summary">Запрещает приложениям читать IMEI и номер — защита от пассивного ID-трекинга. Ограничения: некоторые приложения могут попросить ввести номер СМС-кода вручную. Android 11+</string>
+    <string name="pref_restrict_location">&#128205; Заблокировать геолокацию</string>
+    <string name="pref_restrict_location_summary">Запрещает приложениям определять точное и фоновое местоположение. Ограничения: приложения использующие геолокацию не смогут определить ваше местоположение. Android 11+</string>
+    <string name="pref_restrict_camera">&#128247; Заблокировать камеру</string>
+    <string name="pref_restrict_camera_summary">Запрещает приложениям доступ к камере. Ограничения: сканирование QR-кодов и видеозвонки не будут работать. Android 11+</string>
+    <string name="pref_restrict_microphone">&#127908; Заблокировать микрофон</string>
+    <string name="pref_restrict_microphone_summary">Запрещает приложениям доступ к микрофону. Ограничения: голосовой ввод и звонки внутри приложений не будут работать. Android 11+</string>
+    <string name="pref_restrict_contacts">&#128101; Заблокировать контакты</string>
+    <string name="pref_restrict_contacts_summary">Запрещает приложениям читать контакты рабочего профиля. Ограничения: автозаполнение и поиск по контактам не будет работать. Android 11+</string>
+    <!-- SMS / Звонки / Аккаунты / BT -->
+    <string name="pref_restrict_sms">&#128172; Заблокировать SMS</string>
+    <string name="pref_restrict_sms_summary">Запрещает чтение и отправку SMS. Защита от кражи банковских OTP-кодов через READ_SMS. Ограничения: автоматическая SMS-верификация внутри приложений не будет работать — приложения, которые используют SMS-подтверждения, будут просить ввести код вручную. Android 11+</string>
+    <string name="pref_restrict_call_log">&#128222; Заблокировать историю звонков</string>
+    <string name="pref_restrict_call_log_summary">Запрещает доступ к журналу вызовов (кому звонили, когда, сколько). Ограничения: минимальны — почти не используется легитимно. Android 11+</string>
+    <string name="pref_restrict_accounts">&#128100; Заблокировать перечисление аккаунтов</string>
+    <string name="pref_restrict_accounts_summary">Запрещает узнавать приложениям Google-аккаунты на устройстве (GET_ACCOUNTS). Предотвращает идентификацию личности через email. Ограничения: некоторые приложения не смогут автоматически войти через Google. Android 11+</string>
+    <string name="pref_restrict_bluetooth_scan">&#128288; Заблокировать Bluetooth-сканирование</string>
+    <string name="pref_restrict_bluetooth_scan_summary">Запрещает сканировать ближайшие BT-устройства (BLUETOOTH_SCAN). Предотвращает геолокацию без GPS — по BT сигнатурам помещений (метро, офис). Android 12+</string>
+    <string name="pref_restrict_bluetooth">&#128288; Запретить Bluetooth file sharing</string>
+    <string name="pref_restrict_bluetooth_summary">Запрещает приложениям передавать файлы через Bluetooth (DISALLOW_BLUETOOTH_SHARING). Bluetooth сам по себе продолжает работать.</string>
+    <string name="pref_restrict_nfc">&#128290; Запретить NFC Beam</string>
+    <string name="pref_restrict_nfc_summary">Запрещает отправку данных прикосновением через NFC (Android Beam / NDEF Push). Получение через NFC остаётся рабочим.</string>
+    <string name="pref_uninstall_blocked">&#128274; Запретить удаление приложений</string>
+    <string name="pref_uninstall_blocked_summary">Все приложения рабочего профиля нельзя удалить обычным способом. Разблокируйте перед удалением ненужных приложений.</string>
+    <!-- Индивидуальные разрешения приложений -->
+    <string name="pref_app_permissions">&#9881;&#65039; Разрешения приложений</string>
+    <string name="pref_app_permissions_summary">Индивидуальные исключения из глобальных ограничений для каждого приложения</string>
+    <string name="app_perms_title">Разрешения приложений</string>
+    <string name="app_perms_description">По умолчанию каждое приложение следует глобальным настройкам профиля (выше). Здесь можно задать исключения: разрешить конкретному приложению то, что запрещено глобально, или наоборот. Изменённые приложения отмечаются цветом.</string>
+    <string name="app_perms_empty">Нет установленных приложений</string>
+    <string name="app_perms_qap_label">&#128269; Сокрытие от других (QUERY_ALL_PACKAGES)</string>
+    <string name="app_perms_rps_label">&#128244; IMEI и номер телефона (READ_PHONE_STATE)</string>
+    <string name="perm_auto_deny">Дефолтные (как в Настройках приложения)</string>
+    <string name="perm_auto_format">Авто — %s (по настройке профиля)</string>
+    <string name="perm_state_deny">Запретить</string>
+    <string name="perm_state_allow">Разрешить (исключение)</string>
+    <string name="perm_state_allow_default">Разрешить</string>
+    <string name="perm_badge_auto">Авто</string>
+    <string name="perm_badge_deny">Запр.</string>
+    <string name="perm_badge_allow">Разр.</string>
+    <string name="perm_qap_short">&#128269;</string>
+    <string name="perm_rps_short">&#128244;</string>
+    <string name="perm_all_default">По умолчанию</string>
+    <string name="perm_auto_default">Не ограничивать</string>
+    <string name="perm_allow_auto_grant">Разрешить принудительно (без диалога)</string>
+    <string name="app_perms_camera_label">&#128247; Камера</string>
+    <string name="app_perms_mic_label">&#127908; Микрофон</string>
+    <string name="app_perms_location_label">&#128205; Точная геолокация</string>
+    <string name="app_perms_bg_location_label">&#128506; Фоновая геолокация</string>
+    <string name="app_perms_contacts_label">&#128101; Контакты (чтение)</string>
+    <string name="app_perms_sms_label">&#128172; SMS (чтение/отправка)</string>
+    <string name="app_perms_call_log_label">&#128222; История звонков</string>
+    <string name="app_perms_accounts_label">&#128100; Аккаунты (GET_ACCOUNTS)</string>
+    <string name="app_perms_bt_scan_label">&#128288; Bluetooth-сканирование</string>
+    <string name="btn_reset">Сбросить</string>
+
+    <!-- Wizard buttons (legacy) -->
+    <string name="wizard_continue">Продолжить</string>
+    <string name="wizard_skip">Пропустить</string>
+    <string name="wizard_done">Готово</string>
+
+    <!-- Меню ограничений приложения (главный экран) -->
+    <string name="restriction_menu_title">Ограничения: %s</string>
+    <string name="restriction_freeze">🔴 Блокировать при срабатывании триггера</string>
+    <string name="restriction_hide_from_apps">🔍 Скрыть от обнаружения другими</string>
+    <string name="restriction_hide_imei">📴 Скрыть IMEI и номер</string>
+    <string name="restriction_block_camera">📷 Заблокировать камеру</string>
+    <string name="restriction_block_mic">🎤 Заблокировать микрофон</string>
+    <string name="restriction_block_location">📍 Заблокировать геолокацию</string>
+    <string name="restriction_block_contacts">👥 Заблокировать контакты</string>
+    <string name="restriction_block_sms">💬 Заблокировать SMS</string>
+
+    <!-- Onboarding (single screen) -->
+    <string name="onboarding_title">Защита корпоративной сети</string>
+    <string name="onboarding_ok">Понятно</string>
+    <string name="onboarding_message">CoreGuard создаёт изолированное рабочее пространство (Work Profile) на вашем устройстве — стандартный функционал Android для корпоративных пользователей.
+
+🛡️ Принцип работы:
+Недоверенные приложения не должны работать в момент, когда устройство имеет доступ к корпоративной сети. CoreGuard контролирует это автоматически.
+
+🔐 Комбинированная система триггеров:
+• Виртуальная сеть — обнаружение корпоративного подключения
+• Wi-Fi — привязка к конкретным корпоративным сетям (SSID)
+• Мобильный интернет — контроль при переключении на сотовую связь
+• Оператор — реакция на конкретного мобильного оператора
+
+⚡ При срабатывании триггера:
+🔴 Отмеченные приложения — полностью блокируются
+🟢 Неотмеченные — продолжают работать (в зависимости от Ваших настроек!)
+
+В режиме Kill Switch блокируется ВСЯ сеть без исключений.
+
+📲 CoreGuard НЕ собирает, НЕ хранит и НЕ передаёт ваши данные. Всё работает локально на устройстве.</string>
+    <string name="onboarding_message_wp">Вы находитесь в рабочем профиле — все приложения здесь под управлением CoreGuard.
+
+🛡️ Принцип Zero Trust:
+Недоверенные приложения не должны работать при доступе к корпоративной сети. CoreGuard контролирует это автоматически через комбинацию триггеров (Виртуальная сеть + Wi-Fi + мобильная сеть + оператор).
+
+📲 Для эффективной защиты:
+1. Установите нужные приложения через Play Маркет со значком 🎒 (рабочий профиль)
+2. Удалите эти приложения из основного пространства — ОБЯЗАТЕЛЬНО
+3. Отметьте приложения для блокировки на главном экране и выбирите параметры корпоративной сети в настройках!
+
+⚡ При срабатывании триггера:
+🔴 Отмеченные приложения — полностью блокируются
+🟢 Неотмеченные — продолжают работать (зависит от Ваших настроек!)
+
+В режиме Kill Switch блокируется ВСЯ сеть.
+
+⚠ Если приложения останутся в обоих пространствах — защита не будет работать для копий в основном профиле.
+
+CoreGuard НЕ собирает, НЕ хранит и НЕ передаёт ваши данные.</string>
+
+    <!-- Operator trigger -->
+    <string name="trigger_operator">Мобильный оператор</string>
+    <string name="trigger_operator_summary">Срабатывать при подключении к определённому оператору</string>
+    <string name="operator_picker_title">Выбор оператора</string>
+    <string name="operator_not_set">Не задано</string>
+    <string name="operator_add_manual">Ввести вручную</string>
+    <string name="operator_current">Текущий: %s</string>
+
+    <!-- Wi-Fi force kill switch -->
+    <string name="wifi_force_kill_switch">Корпоративная Wi-Fi → Kill Switch</string>
+    <string name="wifi_force_kill_switch_summary">При подключении к корпоративной Wi-Fi сети (из списка выше) автоматически включать режим Kill Switch — полная блокировка сети для максимальной защиты</string>
+
+    <!-- Corporate trigger dialog -->
+    <string name="corporate_trigger_title">Корпоративная сеть?</string>
+    <string name="corporate_trigger_message">Если вы отметите этот триггер как корпоративный — при его срабатывании ВСЕ приложения рабочего профиля будут полностью заморожены, а сеть заблокирована (Kill Switch), независимо от настроек на главном экране.\n\nОтметить как корпоративную сеть?</string>
+    <string name="corporate_trigger_yes">Да, корпоративная</string>
+    <string name="corporate_trigger_no">Нет, обычный триггер</string>
+
+    <!-- Per-network corporate dialogs -->
+    <string name="corporate_wifi_title">Отметьте корпоративные Wi-Fi 🏢</string>
+    <string name="corporate_wifi_message">Отметьте сети, которые являются корпоративными.\n\nПри подключении к корпоративной сети ВСЕ приложения рабочего профиля будут заморожены, а сеть заблокирована (Kill Switch).</string>
+    <string name="corporate_operator_title">Отметьте корпоративных операторов 🏢</string>
+    <string name="corporate_operator_message">Отметьте операторов, подключение через которых считается корпоративным.\n\nПри подключении через корпоративного оператора ВСЕ приложения рабочего профиля будут заморожены, а сеть заблокирована (Kill Switch).</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CoreGuard" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="android:windowBackground">@color/bg_light</item>
+        <item name="android:statusBarColor">@color/bg_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.CoreGuard.Onboarding" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">#0D47A1</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

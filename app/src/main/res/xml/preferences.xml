@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Донат — вверху, чтобы не потерялся -->
+    <PreferenceCategory>
+        <Preference
+            app:key="donate_open"
+            app:title="@string/donate_item_title"
+            app:summary="@string/donate_summary"
+            app:icon="@android:drawable/btn_star_big_on" />
+    </PreferenceCategory>
+
+    <!-- Обмен между профилями -->
+    <PreferenceCategory app:title="@string/settings_cross_profile">
+
+        <SwitchPreferenceCompat
+            app:key="pref_clipboard"
+            app:title="@string/pref_clipboard"
+            app:summary="@string/pref_clipboard_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_contacts"
+            app:title="@string/pref_contacts"
+            app:summary="@string/pref_contacts_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_gallery"
+            app:title="@string/pref_gallery"
+            app:summary="@string/pref_gallery_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_unknown_sources"
+            app:title="@string/pref_unknown_sources"
+            app:summary="@string/pref_unknown_sources_summary"
+            app:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <!-- Триггеры -->
+    <PreferenceCategory app:title="@string/triggers_title">
+
+        <SwitchPreferenceCompat
+            app:key="trigger_vpn"
+            app:title="@string/trigger_vpn"
+            app:summary="@string/trigger_vpn_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="trigger_wifi"
+            app:title="@string/trigger_wifi"
+            app:summary="@string/trigger_wifi_summary"
+            app:defaultValue="false" />
+
+        <Preference
+            app:key="wifi_ssid_list"
+            app:title="@string/wifi_networks_picker_title"
+            app:summary="—"
+            app:dependency="trigger_wifi" />
+
+        <SwitchPreferenceCompat
+            app:key="wifi_force_kill_switch"
+            app:title="@string/wifi_force_kill_switch"
+            app:summary="@string/wifi_force_kill_switch_summary"
+            app:defaultValue="false"
+            app:dependency="trigger_wifi" />
+
+        <SwitchPreferenceCompat
+            app:key="trigger_mobile"
+            app:title="Мобильный интернет"
+            app:summary="Срабатывать при включении мобильных данных"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="trigger_operator"
+            app:title="@string/trigger_operator"
+            app:summary="@string/trigger_operator_summary"
+            app:defaultValue="false" />
+
+        <Preference
+            app:key="operator_list"
+            app:title="@string/operator_picker_title"
+            app:summary="—"
+            app:dependency="trigger_operator" />
+
+        <SwitchPreferenceCompat
+            app:key="kill_switch"
+            app:title="@string/kill_switch_title"
+            app:summary="@string/kill_switch_summary"
+            app:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <!-- Cross-profile sync warning -->
+    <PreferenceCategory app:title="@string/cross_profile_sync_category">
+
+        <Preference
+            app:key="cross_profile_sync_warning"
+            app:title="@string/cross_profile_sync_title"
+            app:summary="@string/cross_profile_sync_summary" />
+
+    </PreferenceCategory>
+
+    <!-- Стабильная работа -->
+    <PreferenceCategory app:title="@string/stable_work_category">
+
+        <SwitchPreferenceCompat
+            app:key="pref_screen_capture_disabled"
+            app:title="@string/pref_screen_capture_disabled"
+            app:summary="@string/pref_screen_capture_disabled_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_phone_state"
+            app:title="@string/pref_restrict_phone_state"
+            app:summary="@string/pref_restrict_phone_state_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_location"
+            app:title="@string/pref_restrict_location"
+            app:summary="@string/pref_restrict_location_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_camera"
+            app:title="@string/pref_restrict_camera"
+            app:summary="@string/pref_restrict_camera_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_microphone"
+            app:title="@string/pref_restrict_microphone"
+            app:summary="@string/pref_restrict_microphone_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_contacts"
+            app:title="@string/pref_restrict_contacts"
+            app:summary="@string/pref_restrict_contacts_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_sms"
+            app:title="@string/pref_restrict_sms"
+            app:summary="@string/pref_restrict_sms_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_call_log"
+            app:title="@string/pref_restrict_call_log"
+            app:summary="@string/pref_restrict_call_log_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_accounts"
+            app:title="@string/pref_restrict_accounts"
+            app:summary="@string/pref_restrict_accounts_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_bluetooth_scan"
+            app:title="@string/pref_restrict_bluetooth_scan"
+            app:summary="@string/pref_restrict_bluetooth_scan_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_bluetooth"
+            app:title="@string/pref_restrict_bluetooth"
+            app:summary="@string/pref_restrict_bluetooth_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_restrict_nfc"
+            app:title="@string/pref_restrict_nfc"
+            app:summary="@string/pref_restrict_nfc_summary"
+            app:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_uninstall_blocked"
+            app:title="@string/pref_uninstall_blocked"
+            app:summary="@string/pref_uninstall_blocked_summary"
+            app:defaultValue="false" />
+
+        <Preference
+            app:key="pref_app_permissions"
+            app:title="@string/pref_app_permissions"
+            app:summary="@string/pref_app_permissions_summary" />
+
+        <Preference
+            app:key="stable_work_app_settings"
+            app:title="@string/stable_work_oem_title"
+            app:summary="@string/stable_work_oem_summary" />
+
+        <Preference
+            app:key="stable_work_guide"
+            app:title="@string/stable_work_guide_title"
+            app:summary="@string/stable_work_guide_summary" />
+
+        <Preference
+            app:key="wp_apps_info"
+            app:title="@string/wp_apps_info_title"
+            app:summary="@string/wp_apps_info_summary" />
+
+    </PreferenceCategory>
+
+    <!-- Hidden easter egg target -->
+    <Preference
+        app:key="easter_egg"
+        app:title="@string/easter_egg_title"
+        app:summary="@string/easter_egg_summary" />
+
+</PreferenceScreen>

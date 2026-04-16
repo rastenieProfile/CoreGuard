@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CoreGuard</string>
+
+    <!-- Provisioning -->
+    <string name="provision_title">创建受保护空间</string>
+    <string name="provision_description">将创建一个隔离的 Android 工作配置文件。其中的应用将与您的个人数据完全隔离。</string>
+    <string name="provision_button">创建</string>
+    <string name="provision_already_managed">工作配置文件已创建</string>
+
+    <!-- Settings -->
+    <string name="settings_title">设置</string>
+    <string name="settings_cross_profile">跨配置文件共享</string>
+    <string name="pref_clipboard">剪贴板</string>
+    <string name="pref_clipboard_summary">允许在主配置文件和工作配置文件之间复制粘贴</string>
+    <string name="pref_contacts">联系人</string>
+    <string name="pref_contacts_summary">从主配置文件拨打电话时显示工作联系人</string>
+    <string name="pref_gallery">图库 / 文件</string>
+    <string name="pref_unknown_sources">安装 APK</string>
+    <string name="pref_unknown_sources_summary">允许在工作配置文件中从文件安装应用（非 Google Play）</string>
+    <string name="show_system_apps">显示系统应用（刷新列表）</string>
+    <string name="pref_gallery_summary">允许通过「分享」在配置文件之间传输文件</string>
+
+    <!-- Triggers -->
+    <string name="triggers_title">触发器</string>
+    <string name="trigger_vpn">设备上的虚拟网络（私有/企业）</string>
+    <string name="trigger_vpn_summary">当任何虚拟网络（私有/企业）激活时触发</string>
+    <string name="trigger_wifi">Wi-Fi 网络</string>
+    <string name="trigger_wifi_summary">连接到指定网络时触发\n\n此触发器必须开启 GPS！</string>
+    <string name="trigger_logic">触发器逻辑</string>
+    <string name="trigger_action">触发时的动作</string>
+    <string name="action_freeze">冻结标记的应用，其他直接连接（例如，虚拟网络触发器激活时，主配置文件的应用通过它连接，而工作配置文件的应用绕过它）— 保护企业网络免受扫描和攻击！</string>
+
+    <!-- Kill Switch -->
+    <string name="kill_switch_title">Kill Switch（完全断网）</string>
+    <string name="kill_switch_summary">触发时阻止所有网络流量（包括未标记的应用）。最大保护模式 — 任何应用都无法访问互联网。</string>
+
+    <!-- First launch -->
+    <string name="first_launch_title">CoreGuard 的工作原理</string>
+    <string name="first_launch_message">CoreGuard 在您的设备上创建一个隔离的工作空间（工作配置文件）（Android 企业用户标准功能）。
+
+所有工作配置文件应用默认在企业网络保护模式下运行 — 阻止不受信任的应用！
+
+当触发器激活时（虚拟网络、Wi-Fi、运营商）：
+
+🔴 标记的应用 — 完全阻止
+
+🟢 未标记的应用 — 继续直接工作
+
+您可以选择阻止哪些应用、如何阻止以及在什么条件下阻止。
+
+在设置中可以启用 Kill Switch 模式 — 触发器激活时将无例外地阻止所有网络流量（针对工作配置文件应用）。</string>
+
+    <!-- Privacy -->
+    <string name="privacy_warning_title">关于权限</string>
+    <string name="privacy_warning_message">CoreGuard 安装时仅请求一个权限。
+
+这是为了确定主配置文件中的网络状态和活跃连接。
+
+⚠ CoreGuard 不收集、不存储、不传输您的任何数据。应用完全在您的设备上本地运行。</string>
+
+    <!-- Buttons -->
+    <string name="btn_start_protection">启用保护</string>
+    <string name="btn_stop_protection">禁用保护</string>
+    <string name="btn_app_picker">选择应用</string>
+    <string name="btn_select_all">全选</string>
+    <string name="btn_deselect_all">取消全选</string>
+    <string name="btn_save">保存</string>
+    <string name="app_picker_title">选择要隔离的应用</string>
+    <string name="app_picker_header">应用</string>
+
+    <!-- Status -->
+    <string name="status_active">🛡 监控已激活</string>
+    <string name="status_inactive">监控未激活</string>
+    <string name="status_triggered">⚡ 触发器已激活 — 标记的应用已冻结</string>
+
+    <!-- Info banner -->
+    <string name="info_banner_title">🔒 保护如何工作</string>
+    <string name="info_banner_message">企业网络和设备保护！\n\n以下所有应用已与主空间隔离。为获得最大保护：勾选应用 — 触发器激活时它们将被完全冻结。</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_monitor">触发器监控</string>
+    <string name="notification_monitoring">CoreGuard 正在监控触发器</string>
+    <string name="notification_triggered">保护已激活 — 企业网络已隔离！</string>
+    <string name="notification_permission_denied">监控需要通知权限</string>
+
+    <!-- Provisioning result -->
+    <string name="provision_success">工作配置文件已创建！打开带有 🎒 图标的应用</string>
+    <string name="profile_created_title">受保护空间已创建</string>
+    <string name="profile_created_hint">在应用列表中找到带有公文包 🎒 图标的应用 — 这是 CoreGuard 的工作配置文件。打开它来管理保护。</string>
+
+    <!-- OEM Warnings -->
+    <string name="oem_warning_title">稳定运行的重要提示</string>
+    <string name="oem_warning_xiaomi">在 MIUI（小米/红米/POCO）上，后台服务可能被停止。
+
+为确保持续保护：
+
+1. 设置 → 应用 → CoreGuard → 自启动 → 开启
+
+2. 设置 → 电池 → 省电模式 → CoreGuard → 无限制
+
+3. 设置 → 应用 → CoreGuard → 其他权限 → 后台运行 → 允许</string>
+    <string name="oem_warning_huawei">在华为/荣耀上，后台进程会被严格限制。
+
+为确保持续运行：
+
+设置 → 电池 → 应用启动管理 → CoreGuard → 手动管理 → 开启全部三个权限。
+
+注意：没有 Google 服务（GMS），Android 工作配置文件可能不稳定。</string>
+    <string name="oem_warning_samsung">在三星 One UI 上，请为 CoreGuard 关闭电池优化：
+
+设置 → 设备维护 → 电池 → 应用限制 → CoreGuard → 无限制。</string>
+    <string name="oem_warning_oppo">在 OPPO / OnePlus / Realme / Vivo 上，系统会积极终止后台应用。
+
+将 CoreGuard 添加到自启动列表，并在系统设置中禁用电池限制（ColorOS / OxygenOS / FunTouchOS）。</string>
+    <string name="oem_warning_generic">某些制造商会限制后台应用。
+
+为确保可靠运行：设置 → 电池 → 找到 CoreGuard → 选择「无限制」。</string>
+
+    <!-- Installation info -->
+    <string name="install_info_title">完成安装</string>
+    <string name="install_info_message">初始工作空间设置期间，手机可能会明显负载加重 — 这是正常的。等待过程完成，不要关闭应用，不要着急 — 此时设备卡顿是正常的！</string>
+
+    <!-- Add Apps screen -->
+    <string name="add_apps_title">添加应用</string>
+    <string name="add_apps_userapp_hint">💡 对于下载的应用：找到带有 🎒（公文包）图标的 Play 商店 — 这是工作配置文件的商店。在那里安装应用 — 它们将被隔离在受保护空间中。别忘了在工作配置文件中安装后，从主空间删除重复的应用。</string>
+    <string name="add_apps_system_title">系统应用（可启用）</string>
+    <string name="add_apps_nothing_available">所有可用的系统应用已在工作配置文件中启用。</string>
+    <string name="add_apps_enable_button">启用已选</string>
+    <string name="add_apps_nothing_selected">请至少选择一个应用</string>
+    <string name="add_apps_enabled_count">已启用 %1$d / %2$d 个应用</string>
+
+    <!-- Toolbar menu -->
+    <string name="menu_add_apps">添加应用</string>
+    <string name="menu_freeze_apps">冻结应用</string>
+
+    <!-- Main screen: control panel -->
+    <string name="btn_toggle_active">已激活</string>
+    <string name="apps_to_freeze_title">要阻止的应用</string>
+    <string name="apps_saved">应用列表已保存</string>
+    <string name="app_label_freeze">🔴 %s</string>
+    <string name="app_label_bypass">🟢 %s</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_connection">连接</string>
+    <string name="nav_settings">设置</string>
+
+    <!-- Settings: network pickers -->
+    <string name="wifi_networks_picker_title">Wi-Fi 网络列表</string>
+    <string name="wifi_scanning">正在搜索 Wi-Fi 网络…</string>
+    <string name="wifi_no_networks_found">未找到可用网络。请确保 Wi-Fi 已开启。</string>
+    <string name="wifi_add_manual">手动输入</string>
+    <string name="wifi_not_set">未设置</string>
+
+    <!-- Easter egg -->
+    <string name="easter_egg_title">关于</string>
+    <string name="easter_egg_summary">CoreGuard v1.0 · 感谢 Anthropic</string>
+
+    <!-- Cross-profile sync warning -->
+    <string name="cross_profile_sync_category">跨配置文件同步</string>
+    <string name="cross_profile_sync_title">⚠ 检查应用同步</string>
+    <string name="cross_profile_sync_summary">某些应用（联系人、日历、图库）可能在主配置文件和工作配置文件之间同步数据。点击打开系统设置进行检查。</string>
+    <string name="cross_profile_sync_summary_no_link">某些应用（联系人、日历、图库）可能在主配置文件和工作配置文件之间同步数据。请在：设置 → 账户 → 工作配置文件中检查。</string>
+
+    <!-- Work profile onboarding -->
+    <string name="wp_onboarding_title">受保护空间设置</string>
+    <string name="wp_onboarding_message">您正在工作配置文件中 — 这里的所有应用都受 CoreGuard 保护。
+
+为确保有效保护：
+
+1. 通过带有 🎒（公文包）图标的 Play 商店在此空间安装需要的应用
+
+2. 从主空间删除这些应用 — 这是保护的必要条件！
+
+3. 在主屏幕的阻止列表中标记已安装的应用（以获得最大保护）
+
+⚠ 如果应用保留在两个空间中 — 主配置文件中的副本将不受保护。</string>
+
+    <!-- Stable work settings -->
+    <string name="stable_work_category">稳定运行</string>
+    <string name="stable_work_oem_title">⚙ 系统应用设置</string>
+    <string name="stable_work_oem_summary">打开 CoreGuard 系统设置：自启动、电池、权限。后台运行所必需。</string>
+    <string name="stable_work_guide_title">📋 如何实现稳定运行</string>
+    <string name="stable_work_guide_summary">针对您设备的设置建议</string>
+
+    <!-- Existing work profile warning -->
+    <string name="existing_profile_title">⚠ 检测到已有工作配置文件</string>
+    <string name="existing_profile_message">设备上已存在工作配置文件（可能由 Shelter 或其他管理器创建）。
+
+CoreGuard 无法使用其他应用的工作配置文件。请执行以下操作：
+
+1. 在设备设置中删除现有工作配置文件
+2. 重启 CoreGuard 并创建新配置文件
+
+📍 您设备的路径：
+%s
+
+⚠ 删除工作配置文件将删除其中的所有数据和应用！！！</string>
+    <string name="existing_profile_path_xiaomi">设置 → 更多设置 → 账号与同步 → 删除工作配置文件</string>
+    <string name="existing_profile_path_samsung">设置 → 账户和备份 → 管理账户 → 工作配置文件 → 删除工作配置文件</string>
+    <string name="existing_profile_path_huawei">设置 → 用户和账户 → 删除工作配置文件</string>
+    <string name="existing_profile_path_oppo">设置 → 用户和账户 → 删除工作配置文件</string>
+    <string name="existing_profile_path_generic">设置 → 密码和账户 → 工作配置文件 → 删除工作配置文件</string>
+    <string name="existing_profile_open_settings">打开设置</string>
+    <string name="existing_profile_dismiss">知道了</string>
+
+    <!-- Work profile info -->
+    <string name="wp_apps_info_title">ℹ 工作配置文件应用</string>
+    <string name="wp_apps_info_summary">工作配置文件中安装的所有应用都由 CoreGuard 管理。当触发器激活时，标记的应用将被阻止。</string>
+
+    <!-- Donate -->
+    <string name="donate_title">☕</string>
+    <string name="donate_item_title">支持开发者</string>
+    <string name="donate_summary">银行卡 · BTC · USDC · Monero</string>
+    <string name="donate_screen_title">☕ 请我喝咖啡</string>
+    <string name="donate_card">💳 银行卡 (EU)</string>
+    <string name="donate_btc">₿ Bitcoin (BTC)</string>
+    <string name="donate_usdc">💵 USDC (TRC-20)</string>
+    <string name="donate_xmr">🔒 Monero (XMR)</string>
+    <string name="donate_copy">复制</string>
+    <string name="donate_copied">已复制！</string>
+    <string name="donate_card_number">4407 5222 1779 1007</string>
+    <string name="donate_btc_address">bc1qnlk04sw30g2g7350ysq2ze3mhdy6yldlh8lr6j</string>
+    <string name="donate_usdc_address">TWcEhgVVqKyvbP6uMHeVoPzk97QTqSzUZS</string>
+    <string name="donate_xmr_address">47vwPFg489aBcM5d1z5UY4MrvDXbctghsPNe9d2sRoinGshKjqbxQuz2ft1uE5G6jM8VSnbmuNWdkGxn4bmCaV4p6zK4NFk</string>
+
+    <!-- Privacy restrictions -->
+    <string name="pref_screen_capture_disabled">&#128247; 截屏保护</string>
+    <string name="pref_screen_capture_disabled_summary">工作配置文件应用无法截屏或录屏。阻止运行中应用的隐藏后台截图。您从工作配置文件的截屏也将被阻止。</string>
+    <string name="pref_restrict_phone_state">&#128244; 隐藏 IMEI 和电话号码</string>
+    <string name="pref_restrict_phone_state_summary">禁止应用读取 IMEI 和电话号码 — 防止被动 ID 追踪。限制：某些应用可能要求手动输入短信验证码。Android 11+</string>
+    <string name="pref_restrict_location">&#128205; 禁止定位</string>
+    <string name="pref_restrict_location_summary">禁止应用确定精确和后台位置。限制：使用定位的应用将无法确定您的位置。Android 11+</string>
+    <string name="pref_restrict_camera">&#128247; 禁止相机</string>
+    <string name="pref_restrict_camera_summary">禁止应用访问相机。限制：二维码扫描和视频通话将无法使用。Android 11+</string>
+    <string name="pref_restrict_microphone">&#127908; 禁止麦克风</string>
+    <string name="pref_restrict_microphone_summary">禁止应用访问麦克风。限制：语音输入和应用内通话将无法使用。Android 11+</string>
+    <string name="pref_restrict_contacts">&#128101; 禁止联系人</string>
+    <string name="pref_restrict_contacts_summary">禁止应用读取工作配置文件联系人。限制：自动填充和联系人搜索将无法使用。Android 11+</string>
+    <!-- SMS / Calls / Accounts / BT -->
+    <string name="pref_restrict_sms">&#128172; 禁止短信</string>
+    <string name="pref_restrict_sms_summary">禁止读取和发送短信。防止通过 READ_SMS 窃取银行 OTP 验证码。限制：应用内自动短信验证将无法使用 — 使用短信确认的应用将要求手动输入验证码。Android 11+</string>
+    <string name="pref_restrict_call_log">&#128222; 禁止通话记录</string>
+    <string name="pref_restrict_call_log_summary">禁止访问通话记录（给谁打了电话、什么时候、多长时间）。限制：极少 — 很少被合法使用。Android 11+</string>
+    <string name="pref_restrict_accounts">&#128100; 禁止枚举账户</string>
+    <string name="pref_restrict_accounts_summary">禁止应用发现设备上的 Google 账户（GET_ACCOUNTS）。防止通过邮箱进行身份追踪。限制：某些应用无法自动通过 Google 登录。Android 11+</string>
+    <string name="pref_restrict_bluetooth_scan">&#128288; 禁止蓝牙扫描</string>
+    <string name="pref_restrict_bluetooth_scan_summary">禁止扫描附近的蓝牙设备（BLUETOOTH_SCAN）。防止通过蓝牙信号特征（地铁、办公室）进行无 GPS 定位。Android 12+</string>
+    <string name="pref_restrict_bluetooth">&#128288; 禁止蓝牙文件共享</string>
+    <string name="pref_restrict_bluetooth_summary">禁止应用通过蓝牙传输文件（DISALLOW_BLUETOOTH_SHARING）。蓝牙本身继续工作。</string>
+    <string name="pref_restrict_nfc">&#128290; 禁止 NFC Beam</string>
+    <string name="pref_restrict_nfc_summary">禁止通过 NFC 触碰发送数据（Android Beam / NDEF Push）。通过 NFC 接收仍然可用。</string>
+    <string name="pref_uninstall_blocked">&#128274; 禁止卸载应用</string>
+    <string name="pref_uninstall_blocked_summary">工作配置文件中的所有应用无法通过常规方式卸载。在删除不需要的应用之前请先解除此限制。</string>
+    <!-- Per-app permissions -->
+    <string name="pref_app_permissions">&#9881;&#65039; 应用权限</string>
+    <string name="pref_app_permissions_summary">为每个应用设置全局限制的个别例外</string>
+    <string name="app_perms_title">应用权限</string>
+    <string name="app_perms_description">默认情况下，每个应用遵循上方的全局配置文件设置。在这里您可以设置例外：允许特定应用使用全局禁止的功能，反之亦然。已修改的应用将以颜色标记。</string>
+    <string name="app_perms_empty">没有已安装的应用</string>
+    <string name="app_perms_qap_label">&#128269; 对其他应用隐藏 (QUERY_ALL_PACKAGES)</string>
+    <string name="app_perms_rps_label">&#128244; IMEI 和电话号码 (READ_PHONE_STATE)</string>
+    <string name="perm_auto_deny">默认（按应用设置）</string>
+    <string name="perm_auto_format">自动 — %s（按配置文件设置）</string>
+    <string name="perm_state_deny">拒绝</string>
+    <string name="perm_state_allow">允许（例外）</string>
+    <string name="perm_state_allow_default">允许</string>
+    <string name="perm_badge_auto">自动</string>
+    <string name="perm_badge_deny">拒绝</string>
+    <string name="perm_badge_allow">允许</string>
+    <string name="perm_qap_short">&#128269;</string>
+    <string name="perm_rps_short">&#128244;</string>
+    <string name="perm_all_default">默认</string>
+    <string name="perm_auto_default">无限制</string>
+    <string name="perm_allow_auto_grant">强制允许（无对话框）</string>
+    <string name="app_perms_camera_label">&#128247; 相机</string>
+    <string name="app_perms_mic_label">&#127908; 麦克风</string>
+    <string name="app_perms_location_label">&#128205; 精确定位</string>
+    <string name="app_perms_bg_location_label">&#128506; 后台定位</string>
+    <string name="app_perms_contacts_label">&#128101; 联系人（读取）</string>
+    <string name="app_perms_sms_label">&#128172; 短信（读取/发送）</string>
+    <string name="app_perms_call_log_label">&#128222; 通话记录</string>
+    <string name="app_perms_accounts_label">&#128100; 账户 (GET_ACCOUNTS)</string>
+    <string name="app_perms_bt_scan_label">&#128288; 蓝牙扫描</string>
+    <string name="btn_reset">重置</string>
+
+    <!-- Wizard buttons (legacy) -->
+    <string name="wizard_continue">继续</string>
+    <string name="wizard_skip">跳过</string>
+    <string name="wizard_done">完成</string>
+
+    <!-- App restriction menu (main screen) -->
+    <string name="restriction_menu_title">限制: %s</string>
+    <string name="restriction_freeze">🔴 触发时阻止</string>
+    <string name="restriction_hide_from_apps">🔍 对其他应用隐藏</string>
+    <string name="restriction_hide_imei">📴 隐藏 IMEI 和号码</string>
+    <string name="restriction_block_camera">📷 禁止相机</string>
+    <string name="restriction_block_mic">🎤 禁止麦克风</string>
+    <string name="restriction_block_location">📍 禁止定位</string>
+    <string name="restriction_block_contacts">👥 禁止联系人</string>
+    <string name="restriction_block_sms">💬 禁止短信</string>
+
+    <!-- Onboarding (single screen) -->
+    <string name="onboarding_title">企业网络保护</string>
+    <string name="onboarding_ok">知道了</string>
+    <string name="onboarding_message">CoreGuard 在您的设备上创建一个隔离的工作空间（工作配置文件）— Android 企业用户的标准功能。
+
+🛡️ 工作原理：
+当设备可以访问企业网络时，不受信任的应用不得运行。CoreGuard 自动控制这一点。
+
+🔐 组合触发系统：
+• 虚拟网络 — 检测企业连接
+• Wi-Fi — 绑定特定企业网络 (SSID)
+• 移动网络 — 切换到蜂窝网络时控制
+• 运营商 — 响应特定移动运营商
+
+⚡ 触发器激活时：
+🔴 标记的应用 — 完全阻止
+🟢 未标记的 — 继续工作（取决于您的设置！）
+
+Kill Switch 模式下，所有网络流量无例外地被阻止。
+
+📲 CoreGuard 不收集、不存储、不传输您的数据。一切在设备上本地运行。</string>
+    <string name="onboarding_message_wp">您正在工作配置文件中 — 这里的所有应用都由 CoreGuard 管理。
+
+🛡️ Zero Trust 原则：
+当设备可以访问企业网络时，不受信任的应用不得运行。CoreGuard 通过触发器组合（虚拟网络 + Wi-Fi + 移动网络 + 运营商）自动控制这一点。
+
+📲 为确保有效保护：
+1. 通过带有 🎒（公文包）图标的 Play 商店安装需要的应用（工作配置文件）
+2. 从主空间删除这些应用 — 必须执行
+3. 在主屏幕标记要阻止的应用，并在设置中配置企业网络参数！
+
+⚡ 触发器激活时：
+🔴 标记的应用 — 完全阻止
+🟢 未标记的 — 继续工作（取决于您的设置！）
+
+Kill Switch 模式下，所有网络流量被阻止。
+
+⚠ 如果应用保留在两个空间中 — 主配置文件中的副本将不受保护。
+
+CoreGuard 不收集、不存储、不传输您的数据。</string>
+
+    <!-- Operator trigger -->
+    <string name="trigger_operator">移动运营商</string>
+    <string name="trigger_operator_summary">连接到特定运营商时触发</string>
+    <string name="operator_picker_title">选择运营商</string>
+    <string name="operator_not_set">未设置</string>
+    <string name="operator_add_manual">手动输入</string>
+    <string name="operator_current">当前：%s</string>
+
+    <!-- Wi-Fi force kill switch -->
+    <string name="wifi_force_kill_switch">企业 Wi-Fi → Kill Switch</string>
+    <string name="wifi_force_kill_switch_summary">连接到企业 Wi-Fi 网络（来自上方列表）时，自动启用 Kill Switch 模式 — 完全断网以获得最大保护</string>
+
+    <!-- Corporate trigger dialog -->
+    <string name="corporate_trigger_title">企业网络？</string>
+    <string name="corporate_trigger_message">如果您将此触发器标记为企业级 — 当它激活时，工作配置文件中的所有应用将被完全冻结，网络将被阻止（Kill Switch），无论主屏幕设置如何。\n\n标记为企业网络？</string>
+    <string name="corporate_trigger_yes">是的，企业级</string>
+    <string name="corporate_trigger_no">不，普通触发器</string>
+
+    <!-- Per-network corporate dialogs -->
+    <string name="corporate_wifi_title">标记企业 Wi-Fi 🏢</string>
+    <string name="corporate_wifi_message">标记属于企业的网络。\n\n连接到企业网络时，工作配置文件中的所有应用将被冻结，网络将被阻止（Kill Switch）。</string>
+    <string name="corporate_operator_title">标记企业运营商 🏢</string>
+    <string name="corporate_operator_message">标记被视为企业连接的运营商。\n\n通过企业运营商连接时，工作配置文件中的所有应用将被冻结，网络将被阻止（Kill Switch）。</string>
+</resources>

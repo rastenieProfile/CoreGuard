@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Необходимо для определения SSID Wi-Fi (триггер по сети) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Foreground Service для VPN и мониторинга триггеров -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Определение оператора (триггер по оператору) -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- Необходимо для запроса списка установленных приложений -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <!-- Автозапуск после перезагрузки -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Исключение из оптимизации батареи (=автозапуск на MIUI/EMUI/OneUI) -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CoreGuard">
+
+        <!-- Главная Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask" />
+
+        <!-- Онбординг (fullscreen, показывается 1 раз после установки) -->
+        <activity
+            android:name=".ui.OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CoreGuard.Onboarding" />
+
+        <!-- Алиас лаунчера: отключается в основном профиле (чтобы скрыть иконку),
+             при этом сама MainActivity остаётся доступна для PendingIntent уведомлений -->
+        <activity-alias
+            android:name=".ui.MainActivityLauncher"
+            android:targetActivity=".ui.MainActivity"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- Настройки -->
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false" />
+
+        <!-- Донат -->
+        <activity
+            android:name=".ui.DonateActivity"
+            android:exported="false"
+            android:label="@string/donate_screen_title" />
+
+        <!-- Индивидуальные разрешения приложений -->
+        <activity
+            android:name=".ui.AppPermissionsActivity"
+            android:exported="false"
+            android:label="@string/app_perms_title" />
+
+        <!-- Выбор приложений для изоляции -->
+        <activity
+            android:name=".ui.AppPickerActivity"
+            android:exported="false" />
+
+        <!-- Добавление приложений в рабочий профиль -->
+        <activity
+            android:name=".ui.AddAppsActivity"
+            android:exported="false" />
+
+        <!-- Device Admin Receiver — ядро DPC -->
+        <receiver
+            android:name=".admin.AppDeviceAdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_policies" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.PROFILE_PROVISIONING_COMPLETE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- VPN-сервис для блокировки сети (Kill Switch) -->
+        <service
+            android:name=".vpn.LocalVpnService"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+
+        <!-- Foreground-сервис мониторинга триггеров -->
+        <service
+            android:name=".trigger.TriggerMonitorService"
+            android:foregroundServiceType="specialUse"
+            android:exported="false" />
+
+        <!-- Перехват установки приложений → сразу deny QUERY_ALL_PACKAGES -->
+        <receiver
+            android:name=".admin.PackageAddedReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Автозапуск сервиса после перезагрузки + скрытие иконки при создании рабочего профиля -->
+        <receiver
+            android:name=".trigger.BootReceiver"
+            android:exported="true"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <!-- Срабатывает в основном профиле когда создаётся рабочий профиль -->
+                <action android:name="android.intent.action.MANAGED_PROFILE_ADDED" />
+                <!-- В каждом профиле при обновлении APK: восстановить MainActivity + запустить сервис -->
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
