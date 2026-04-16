@@ -1,0 +1,47 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+*.iml
+.idea/
+.DS_Store
+
+# NDK
+obj/
+.cxx/
+
+# IntelliJ
+*.hprof
+
+# Keystore files
+*.jks
+*.keystore
+
+# Log files
+*.log
+
+# Misc
+build_out.txt
+CHECKSUMS.txt
+pdf_text.txt
+extract_pdf.py

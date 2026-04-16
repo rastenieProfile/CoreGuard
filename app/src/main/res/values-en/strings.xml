@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CoreGuard</string>
+
+    <!-- Provisioning -->
+    <string name="provision_title">Create Protected Space</string>
+    <string name="provision_description">An isolated Android Work Profile will be created. Apps inside it will be completely separated from your personal data.</string>
+    <string name="provision_button">Create</string>
+    <string name="provision_already_managed">Work Profile already created</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_cross_profile">Cross-Profile Sharing</string>
+    <string name="pref_clipboard">Clipboard</string>
+    <string name="pref_clipboard_summary">Allow copy/paste between main and work profiles</string>
+    <string name="pref_contacts">Contacts</string>
+    <string name="pref_contacts_summary">Show work contacts when calling from the main profile</string>
+    <string name="pref_gallery">Gallery / Files</string>
+    <string name="pref_unknown_sources">Install APK</string>
+    <string name="pref_unknown_sources_summary">Allow installing apps from files (not from Google Play) in the work profile</string>
+    <string name="show_system_apps">Show system apps (refresh list)</string>
+    <string name="pref_gallery_summary">Allow file sharing between profiles via \"Share\"</string>
+
+    <!-- Triggers -->
+    <string name="triggers_title">Triggers</string>
+    <string name="trigger_vpn">Virtual network on device (private/corporate)</string>
+    <string name="trigger_vpn_summary">Trigger when any virtual network (private/corporate) is active</string>
+    <string name="trigger_wifi">Wi-Fi Network</string>
+    <string name="trigger_wifi_summary">Trigger when connected to specified networks\n\nGPS MUST be enabled for this trigger to work!</string>
+    <string name="trigger_logic">Trigger Logic</string>
+    <string name="trigger_action">Action on trigger</string>
+    <string name="action_freeze">Freeze marked apps, others go direct (e.g., when Virtual Network trigger fires, main profile apps go through it, while work profile apps bypass it) — Protect corporate networks from scanning and attacks!</string>
+
+    <!-- Kill Switch -->
+    <string name="kill_switch_title">Kill Switch (full network block)</string>
+    <string name="kill_switch_summary">When triggered, block ALL network traffic (including unmarked apps). Maximum protection mode — no app can access the internet.</string>
+
+    <!-- First launch -->
+    <string name="first_launch_title">How CoreGuard Works</string>
+    <string name="first_launch_message">CoreGuard creates an isolated workspace (Work Profile) on your device (standard Android feature for corporate users).
+
+All work profile apps operate in corporate network protection mode by default — blocking untrusted applications!
+
+When a trigger fires (Virtual Network, Wi-Fi, Operator):
+
+🔴 Marked apps — completely blocked
+
+🟢 Unmarked apps — continue working directly
+
+You choose which apps to block, how, and under what conditions.
+
+In settings, you can enable Kill Switch mode — then when a trigger fires, ALL network traffic will be blocked without exceptions (for work profile apps).</string>
+
+    <!-- Privacy -->
+    <string name="privacy_warning_title">About Permissions</string>
+    <string name="privacy_warning_message">CoreGuard requests only one permission during installation.
+
+This is required to determine network state and active connections in the main profile.
+
+⚠ CoreGuard does NOT collect, NOT store, and NOT transmit any of your data. The app works entirely locally on your device.</string>
+
+    <!-- Buttons -->
+    <string name="btn_start_protection">Enable Protection</string>
+    <string name="btn_stop_protection">Disable Protection</string>
+    <string name="btn_app_picker">Select Apps</string>
+    <string name="btn_select_all">Select All</string>
+    <string name="btn_deselect_all">Deselect All</string>
+    <string name="btn_save">Save</string>
+    <string name="app_picker_title">Select apps for isolation</string>
+    <string name="app_picker_header">Apps</string>
+
+    <!-- Status -->
+    <string name="status_active">🛡 Monitoring active</string>
+    <string name="status_inactive">Monitoring inactive</string>
+    <string name="status_triggered">⚡ Trigger fired — marked apps frozen</string>
+
+    <!-- Info banner -->
+    <string name="info_banner_title">🔒 How Protection Works</string>
+    <string name="info_banner_message">Corporate network and device protection!\n\nAll apps below are already isolated from the main space. For maximum protection: check the apps — when a trigger fires, they will be completely frozen.</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_monitor">Trigger Monitoring</string>
+    <string name="notification_monitoring">CoreGuard is monitoring triggers</string>
+    <string name="notification_triggered">Protection active — corporate network isolated!</string>
+    <string name="notification_permission_denied">Monitoring requires notification permission</string>
+
+    <!-- Provisioning result -->
+    <string name="provision_success">Work Profile created! Open the app with the 🎒 icon</string>
+    <string name="profile_created_title">Protected Space Created</string>
+    <string name="profile_created_hint">Find the app icon with a briefcase 🎒 in the app list — this is CoreGuard\'s Work Profile. Open it to manage protection.</string>
+
+    <!-- OEM Warnings -->
+    <string name="oem_warning_title">Important for Stable Operation</string>
+    <string name="oem_warning_xiaomi">On MIUI (Xiaomi/Redmi/POCO) background services may be stopped.
+
+For continuous protection:
+
+1. Settings → Apps → CoreGuard → Autostart → Enable
+
+2. Settings → Battery → Battery Saver → CoreGuard → No Restrictions
+
+3. Settings → Apps → CoreGuard → Other Permissions → Run in Background → Allow</string>
+    <string name="oem_warning_huawei">On Huawei/Honor background processes are aggressively restricted.
+
+For continuous operation:
+
+Settings → Battery → App Launch → CoreGuard → Manage Manually → enable all three permissions.
+
+Note: without Google services (GMS), Android Work Profile may be unstable.</string>
+    <string name="oem_warning_samsung">On Samsung One UI, disable battery optimization for CoreGuard:
+
+Settings → Device Care → Battery → App Restrictions → CoreGuard → Unrestricted.</string>
+    <string name="oem_warning_oppo">On OPPO / OnePlus / Realme / Vivo the system aggressively kills background apps.
+
+Add CoreGuard to the autostart list and disable battery restrictions in system settings (ColorOS / OxygenOS / FunTouchOS).</string>
+    <string name="oem_warning_generic">Some manufacturers restrict background apps.
+
+For reliable operation: Settings → Battery → find CoreGuard → select \"Unrestricted\".</string>
+
+    <!-- Installation info -->
+    <string name="install_info_title">Completing Installation</string>
+    <string name="install_info_message">During initial workspace setup, the phone may experience heavy load — this is normal. Wait for the process to complete, do not close the app, don\'t rush — device slowdown at this point is expected!</string>
+
+    <!-- Add Apps screen -->
+    <string name="add_apps_title">Add Apps</string>
+    <string name="add_apps_userapp_hint">💡 For downloaded apps: find Play Store with the 🎒 (briefcase) icon — this is the work profile store. Install the apps there — they will be isolated in the protected space. DON\'T FORGET to remove duplicate apps from the main space after installing them in the work profile.</string>
+    <string name="add_apps_system_title">System Apps (available to enable)</string>
+    <string name="add_apps_nothing_available">All available system apps are already enabled in the work profile.</string>
+    <string name="add_apps_enable_button">Enable Selected</string>
+    <string name="add_apps_nothing_selected">Select at least one app</string>
+    <string name="add_apps_enabled_count">Enabled %1$d of %2$d apps</string>
+
+    <!-- Toolbar menu -->
+    <string name="menu_add_apps">Add Apps</string>
+    <string name="menu_freeze_apps">Apps to Freeze</string>
+
+    <!-- Main screen: control panel -->
+    <string name="btn_toggle_active">Active</string>
+    <string name="apps_to_freeze_title">Apps to Block</string>
+    <string name="apps_saved">App list saved</string>
+    <string name="app_label_freeze">🔴 %s</string>
+    <string name="app_label_bypass">🟢 %s</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_connection">Connection</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Settings: network pickers -->
+    <string name="wifi_networks_picker_title">Wi-Fi Networks List</string>
+    <string name="wifi_scanning">Scanning for Wi-Fi networks…</string>
+    <string name="wifi_no_networks_found">No networks found. Make sure Wi-Fi is enabled.</string>
+    <string name="wifi_add_manual">Enter manually</string>
+    <string name="wifi_not_set">Not set</string>
+
+    <!-- Easter egg -->
+    <string name="easter_egg_title">About</string>
+    <string name="easter_egg_summary">CoreGuard v1.0 · with gratitude to Anthropic</string>
+
+    <!-- Cross-profile sync warning -->
+    <string name="cross_profile_sync_category">Cross-Profile Sync</string>
+    <string name="cross_profile_sync_title">⚠ Check App Sync</string>
+    <string name="cross_profile_sync_summary">Some apps (Contacts, Calendar, Gallery) may sync data between main and work profiles. Tap to open system settings and check.</string>
+    <string name="cross_profile_sync_summary_no_link">Some apps (Contacts, Calendar, Gallery) may sync data between main and work profiles. Check in: Settings → Accounts → Work Profile.</string>
+
+    <!-- Work profile onboarding -->
+    <string name="wp_onboarding_title">Protected Space Setup</string>
+    <string name="wp_onboarding_message">You are in the Work Profile — all apps here are protected by CoreGuard.
+
+For effective protection:
+
+1. Install needed apps in this space via Play Store with the 🎒 (briefcase) icon
+
+2. Remove these apps from the main space — this is REQUIRED for protection!
+
+3. Mark installed apps in the block list on the main screen (for maximum protection)
+
+⚠ If apps remain in both spaces — protection will not work for copies in the main profile.</string>
+
+    <!-- Stable work settings -->
+    <string name="stable_work_category">Stable Operation</string>
+    <string name="stable_work_oem_title">⚙ System App Settings</string>
+    <string name="stable_work_oem_summary">Open CoreGuard system settings: autostart, battery, permissions. Required for background operation.</string>
+    <string name="stable_work_guide_title">📋 How to Achieve Stable Operation</string>
+    <string name="stable_work_guide_summary">Setup recommendations for your device</string>
+
+    <!-- Existing work profile warning -->
+    <string name="existing_profile_title">⚠ Existing Work Profile Detected</string>
+    <string name="existing_profile_message">A Work Profile already exists on this device (possibly created by Shelter or another manager).
+
+CoreGuard cannot use another app\'s Work Profile. To proceed:
+
+1. Remove the existing Work Profile in device settings
+2. Restart CoreGuard and create a new profile
+
+📍 Path for your device:
+%s
+
+⚠ Removing the Work Profile will delete all data and apps inside it!!!</string>
+    <string name="existing_profile_path_xiaomi">Settings → Additional Settings → Accounts &amp; Sync → Remove Work Profile</string>
+    <string name="existing_profile_path_samsung">Settings → Accounts and Backup → Manage Accounts → Work Profile → Remove Work Profile</string>
+    <string name="existing_profile_path_huawei">Settings → Users &amp; Accounts → Remove Work Profile</string>
+    <string name="existing_profile_path_oppo">Settings → Users &amp; Accounts → Remove Work Profile</string>
+    <string name="existing_profile_path_generic">Settings → Passwords &amp; Accounts → Work Profile → Remove Work Profile</string>
+    <string name="existing_profile_open_settings">Open Settings</string>
+    <string name="existing_profile_dismiss">Got it</string>
+
+    <!-- Work profile info -->
+    <string name="wp_apps_info_title">ℹ Work Profile Apps</string>
+    <string name="wp_apps_info_summary">All apps installed in the Work Profile are managed by CoreGuard. When a trigger fires, marked apps will be blocked.</string>
+
+    <!-- Donate -->
+    <string name="donate_title">☕</string>
+    <string name="donate_item_title">Support the Developer</string>
+    <string name="donate_summary">Card · BTC · USDC · Monero</string>
+    <string name="donate_screen_title">☕ Buy Me a Cookie</string>
+    <string name="donate_card">💳 Card (EU)</string>
+    <string name="donate_btc">₿ Bitcoin (BTC)</string>
+    <string name="donate_usdc">💵 USDC (TRC-20)</string>
+    <string name="donate_xmr">🔒 Monero (XMR)</string>
+    <string name="donate_copy">Copy</string>
+    <string name="donate_copied">Copied!</string>
+    <string name="donate_card_number">4407 5222 1779 1007</string>
+    <string name="donate_btc_address">bc1qnlk04sw30g2g7350ysq2ze3mhdy6yldlh8lr6j</string>
+    <string name="donate_usdc_address">TWcEhgVVqKyvbP6uMHeVoPzk97QTqSzUZS</string>
+    <string name="donate_xmr_address">47vwPFg489aBcM5d1z5UY4MrvDXbctghsPNe9d2sRoinGshKjqbxQuz2ft1uE5G6jM8VSnbmuNWdkGxn4bmCaV4p6zK4NFk</string>
+
+    <!-- Privacy restrictions -->
+    <string name="pref_screen_capture_disabled">&#128247; Screenshot Protection</string>
+    <string name="pref_screen_capture_disabled_summary">Work profile apps cannot take screenshots or record the screen. Blocks hidden background captures of running apps. Your screenshots from the work profile will also be blocked.</string>
+    <string name="pref_restrict_phone_state">&#128244; Hide IMEI and Phone Number</string>
+    <string name="pref_restrict_phone_state_summary">Prevents apps from reading IMEI and phone number — protection against passive ID tracking. Limitations: some apps may ask you to enter SMS code manually. Android 11+</string>
+    <string name="pref_restrict_location">&#128205; Block Location</string>
+    <string name="pref_restrict_location_summary">Prevents apps from determining precise and background location. Limitations: location-based apps won\'t be able to determine your position. Android 11+</string>
+    <string name="pref_restrict_camera">&#128247; Block Camera</string>
+    <string name="pref_restrict_camera_summary">Prevents apps from accessing the camera. Limitations: QR code scanning and video calls won\'t work. Android 11+</string>
+    <string name="pref_restrict_microphone">&#127908; Block Microphone</string>
+    <string name="pref_restrict_microphone_summary">Prevents apps from accessing the microphone. Limitations: voice input and in-app calls won\'t work. Android 11+</string>
+    <string name="pref_restrict_contacts">&#128101; Block Contacts</string>
+    <string name="pref_restrict_contacts_summary">Prevents apps from reading work profile contacts. Limitations: autofill and contact search won\'t work. Android 11+</string>
+    <!-- SMS / Calls / Accounts / BT -->
+    <string name="pref_restrict_sms">&#128172; Block SMS</string>
+    <string name="pref_restrict_sms_summary">Prevents reading and sending SMS. Protection against banking OTP code theft via READ_SMS. Limitations: auto SMS verification won\'t work — apps using SMS confirmation will ask you to enter the code manually. Android 11+</string>
+    <string name="pref_restrict_call_log">&#128222; Block Call Log</string>
+    <string name="pref_restrict_call_log_summary">Prevents access to call history (who was called, when, duration). Limitations: minimal — rarely used legitimately. Android 11+</string>
+    <string name="pref_restrict_accounts">&#128100; Block Account Enumeration</string>
+    <string name="pref_restrict_accounts_summary">Prevents apps from discovering Google accounts on the device (GET_ACCOUNTS). Prevents identity tracking via email. Limitations: some apps won\'t auto-sign in with Google. Android 11+</string>
+    <string name="pref_restrict_bluetooth_scan">&#128288; Block Bluetooth Scanning</string>
+    <string name="pref_restrict_bluetooth_scan_summary">Prevents scanning nearby BT devices (BLUETOOTH_SCAN). Prevents GPS-free geolocation via BT signatures of places (subway, office). Android 12+</string>
+    <string name="pref_restrict_bluetooth">&#128288; Block Bluetooth File Sharing</string>
+    <string name="pref_restrict_bluetooth_summary">Prevents apps from transferring files via Bluetooth (DISALLOW_BLUETOOTH_SHARING). Bluetooth itself continues to work.</string>
+    <string name="pref_restrict_nfc">&#128290; Block NFC Beam</string>
+    <string name="pref_restrict_nfc_summary">Prevents sending data via NFC touch (Android Beam / NDEF Push). Receiving via NFC remains functional.</string>
+    <string name="pref_uninstall_blocked">&#128274; Block App Uninstall</string>
+    <string name="pref_uninstall_blocked_summary">All work profile apps cannot be uninstalled normally. Disable this before removing unwanted apps.</string>
+    <!-- Per-app permissions -->
+    <string name="pref_app_permissions">&#9881;&#65039; App Permissions</string>
+    <string name="pref_app_permissions_summary">Individual exceptions from global restrictions for each app</string>
+    <string name="app_perms_title">App Permissions</string>
+    <string name="app_perms_description">By default, each app follows the global profile settings (above). Here you can set exceptions: allow a specific app something that is globally restricted, or vice versa. Modified apps are highlighted.</string>
+    <string name="app_perms_empty">No installed apps</string>
+    <string name="app_perms_qap_label">&#128269; Hide from Others (QUERY_ALL_PACKAGES)</string>
+    <string name="app_perms_rps_label">&#128244; IMEI and Phone Number (READ_PHONE_STATE)</string>
+    <string name="perm_auto_deny">Default (as in App Settings)</string>
+    <string name="perm_auto_format">Auto — %s (per profile setting)</string>
+    <string name="perm_state_deny">Deny</string>
+    <string name="perm_state_allow">Allow (exception)</string>
+    <string name="perm_state_allow_default">Allow</string>
+    <string name="perm_badge_auto">Auto</string>
+    <string name="perm_badge_deny">Deny</string>
+    <string name="perm_badge_allow">Allow</string>
+    <string name="perm_qap_short">&#128269;</string>
+    <string name="perm_rps_short">&#128244;</string>
+    <string name="perm_all_default">Default</string>
+    <string name="perm_auto_default">No restrictions</string>
+    <string name="perm_allow_auto_grant">Force allow (no dialog)</string>
+    <string name="app_perms_camera_label">&#128247; Camera</string>
+    <string name="app_perms_mic_label">&#127908; Microphone</string>
+    <string name="app_perms_location_label">&#128205; Precise Location</string>
+    <string name="app_perms_bg_location_label">&#128506; Background Location</string>
+    <string name="app_perms_contacts_label">&#128101; Contacts (read)</string>
+    <string name="app_perms_sms_label">&#128172; SMS (read/send)</string>
+    <string name="app_perms_call_log_label">&#128222; Call Log</string>
+    <string name="app_perms_accounts_label">&#128100; Accounts (GET_ACCOUNTS)</string>
+    <string name="app_perms_bt_scan_label">&#128288; Bluetooth Scanning</string>
+    <string name="btn_reset">Reset</string>
+
+    <!-- Wizard buttons (legacy) -->
+    <string name="wizard_continue">Continue</string>
+    <string name="wizard_skip">Skip</string>
+    <string name="wizard_done">Done</string>
+
+    <!-- App restriction menu (main screen) -->
+    <string name="restriction_menu_title">Restrictions: %s</string>
+    <string name="restriction_freeze">🔴 Block on trigger</string>
+    <string name="restriction_hide_from_apps">🔍 Hide from detection by others</string>
+    <string name="restriction_hide_imei">📴 Hide IMEI and number</string>
+    <string name="restriction_block_camera">📷 Block camera</string>
+    <string name="restriction_block_mic">🎤 Block microphone</string>
+    <string name="restriction_block_location">📍 Block location</string>
+    <string name="restriction_block_contacts">👥 Block contacts</string>
+    <string name="restriction_block_sms">💬 Block SMS</string>
+
+    <!-- Onboarding (single screen) -->
+    <string name="onboarding_title">Corporate Network Protection</string>
+    <string name="onboarding_ok">Got it</string>
+    <string name="onboarding_message">CoreGuard creates an isolated workspace (Work Profile) on your device — a standard Android feature for corporate users.
+
+🛡️ How it works:
+Untrusted apps must not operate when the device has access to the corporate network. CoreGuard controls this automatically.
+
+🔐 Combined trigger system:
+• Virtual Network — detect corporate connection
+• Wi-Fi — bind to specific corporate networks (SSID)
+• Mobile Internet — control when switching to cellular
+• Operator — react to a specific mobile operator
+
+⚡ When a trigger fires:
+🔴 Marked apps — completely blocked
+🟢 Unmarked — continue working (depending on your settings!)
+
+In Kill Switch mode, ALL network traffic is blocked without exceptions.
+
+📲 CoreGuard does NOT collect, NOT store, and NOT transmit your data. Everything works locally on the device.</string>
+    <string name="onboarding_message_wp">You are in the Work Profile — all apps here are managed by CoreGuard.
+
+🛡️ Zero Trust Principle:
+Untrusted apps must not operate when the device has corporate network access. CoreGuard controls this automatically through a combination of triggers (Virtual Network + Wi-Fi + Mobile + Operator).
+
+📲 For effective protection:
+1. Install needed apps via Play Store with the 🎒 (briefcase) icon (Work Profile)
+2. Remove these apps from the main space — REQUIRED
+3. Mark apps for blocking on the main screen and configure corporate network parameters in settings!
+
+⚡ When a trigger fires:
+🔴 Marked apps — completely blocked
+🟢 Unmarked — continue working (depends on your settings!)
+
+In Kill Switch mode, ALL network traffic is blocked.
+
+⚠ If apps remain in both spaces — protection will not work for copies in the main profile.
+
+CoreGuard does NOT collect, NOT store, and NOT transmit your data.</string>
+
+    <!-- Operator trigger -->
+    <string name="trigger_operator">Mobile Operator</string>
+    <string name="trigger_operator_summary">Trigger when connected to a specific operator</string>
+    <string name="operator_picker_title">Select Operator</string>
+    <string name="operator_not_set">Not set</string>
+    <string name="operator_add_manual">Enter manually</string>
+    <string name="operator_current">Current: %s</string>
+
+    <!-- Wi-Fi force kill switch -->
+    <string name="wifi_force_kill_switch">Corporate Wi-Fi → Kill Switch</string>
+    <string name="wifi_force_kill_switch_summary">When connected to a corporate Wi-Fi network (from the list above), automatically enable Kill Switch mode — full network block for maximum protection</string>
+
+    <!-- Corporate trigger dialog -->
+    <string name="corporate_trigger_title">Corporate Network?</string>
+    <string name="corporate_trigger_message">If you mark this trigger as corporate — when it fires, ALL work profile apps will be completely frozen and network will be blocked (Kill Switch), regardless of main screen settings.\n\nMark as corporate network?</string>
+    <string name="corporate_trigger_yes">Yes, corporate</string>
+    <string name="corporate_trigger_no">No, regular trigger</string>
+
+    <!-- Per-network corporate dialogs -->
+    <string name="corporate_wifi_title">Mark Corporate Wi-Fi 🏢</string>
+    <string name="corporate_wifi_message">Mark networks that are corporate.\n\nWhen connected to a corporate network, ALL work profile apps will be frozen and network will be blocked (Kill Switch).</string>
+    <string name="corporate_operator_title">Mark Corporate Operators 🏢</string>
+    <string name="corporate_operator_message">Mark operators whose connection is considered corporate.\n\nWhen connected through a corporate operator, ALL work profile apps will be frozen and network will be blocked (Kill Switch).</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1565C0</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#BBDEFB</color>
+    <color name="secondary">#1976D2</color>
+    <color name="surface">#F5F5F5</color>
+    <color name="on_surface">#212121</color>
+    <color name="error">#B71C1C</color>
+    <color name="green_active">#1565C0</color>
+    <color name="red_inactive">#9E9E9E</color>
+    <color name="bg_light">#F0F1F5</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="text_secondary">#757575</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="power_btn_active">#1565C0</color>
+    <color name="power_btn_inactive">#9E9E9E</color>
+    <color name="status_triggered_bg">#FFF3E0</color>
+</resources>
