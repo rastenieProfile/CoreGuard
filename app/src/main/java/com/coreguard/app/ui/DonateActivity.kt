@@ -41,6 +41,11 @@ class DonateActivity : AppCompatActivity() {
 
         val items = listOf(
             Item(
+                title = getString(R.string.donate_paypal),
+                address = getString(R.string.donate_paypal_url),
+                qrContent = getString(R.string.donate_paypal_url)
+            ),
+            Item(
                 title = getString(R.string.donate_card),
                 address = getString(R.string.donate_card_number),
                 qrContent = getString(R.string.donate_card_number)
